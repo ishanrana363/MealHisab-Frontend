@@ -52,7 +52,7 @@ const AllBorderList = () => {
             await totalBorderDataApi(1, perPage, 0);
             setLoader(false);
         }
-        
+
     };
 
     const submitSearchValue = async () => {
@@ -61,7 +61,7 @@ const AllBorderList = () => {
         setLoader(false);
     };
 
-    
+
 
     const borderDelete = async (id) => {
         let resp = await deleteAlert();
@@ -151,20 +151,41 @@ const AllBorderList = () => {
                                 {
                                     totalBorderDataList && totalBorderDataList.map((item, i) => (
                                         <tr key={i} className="hover:bg-gray-100 text-center cursor-pointer">
-                                            <td className="py-3 px-4 border-b">{i + 1}</td>
-                                            <td className="py-3 px-4 border-b">{item?.name}</td>
                                             <td className="py-3 px-4 border-b">
-                                                <img
-                                                    src={item?.img}
-                                                    alt={item?.name}
-                                                    className="h-12 w-12 rounded-full object-cover mx-auto"
-                                                />
+                                                <Link to={`/dashboard/border-details/${item?._id}`}>
+                                                    {i + 1}
+                                                </Link>
+                                            </td>
+                                            <td className="py-3 px-4 border-b">
+                                                <Link to={`/dashboard/border-details/${item?._id}`}>
+                                                    {item?.name}
+                                                </Link>
+
+                                            </td>
+                                            <td className="py-3 px-4 border-b">
+                                                <Link to={`/dashboard/border-details/${item?._id}`}>
+                                                    <img
+                                                        src={item?.img}
+                                                        alt={item?.name}
+                                                        className="h-12 w-12 rounded-full object-cover mx-auto"
+                                                    />
+                                                </Link>
                                             </td>
                                             <td className="py-3 px-4 border-b text-blue-500">
-                                                {item?.email}
+                                                <Link to={`/dashboard/border-details/${item?._id}`}>
+                                                    {item?.email}
+                                                </Link>
+
                                             </td>
-                                            <td className="py-3 px-4 border-b"> {item?.phone} </td>
-                                            <td className="py-3 px-4 border-b">{moment(item.createdAt).format("MMMM Do YYYY")}
+                                            <td className="py-3 px-4 border-b">
+                                                <Link to={`/dashboard/border-details/${item?._id}`}>
+                                                    {item?.phone}
+                                                </Link>
+                                            </td>
+                                            <td className="py-3 px-4 border-b">
+                                                <Link to={`/dashboard/border-details/${item?._id}`}>
+                                                    {moment(item?.createdAt).format('YYYY-MM-DD')}
+                                                </Link>
                                             </td>
                                             <td className="py-3 px-4 border-b">
                                                 <div className="flex justify-center space-x-2">
@@ -173,7 +194,7 @@ const AllBorderList = () => {
                                                             <span className='' ><FaEdit /></span>
                                                         </button>
                                                     </Link>
-                                                    <button onClick={()=>{borderDelete(item._id)}} className="bg-red-500 text-white px-1 rounded hover:bg-red-600">
+                                                    <button onClick={() => { borderDelete(item._id) }} className="bg-red-500 text-white px-1 rounded hover:bg-red-600">
                                                         <span ><MdDelete /></span>
                                                     </button>
                                                 </div>

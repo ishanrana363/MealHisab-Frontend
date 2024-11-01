@@ -5,6 +5,7 @@ import Layout from "../layout/Layout";
 import BorderCreateFormPage from "../pages/border-page/BorderCreateFormPage";
 import AllBorderListPage from './../pages/border-page/AllBorderListPage';
 import BorderUpdateFormPage from './../pages/border-page/BorderUpdateFormPage';
+import BorderDetailsPage from './../pages/border-page/BorderDetailsPage';
 
 
 export const router = createBrowserRouter([
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
             {
                 path: "border-update/:id",
                 element: <BorderUpdateFormPage></BorderUpdateFormPage>
+            },
+            {
+                path : "border-details/:id",
+                element : <BorderDetailsPage></BorderDetailsPage>
             }
         ]
     }
