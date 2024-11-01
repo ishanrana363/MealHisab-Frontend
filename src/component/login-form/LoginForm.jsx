@@ -1,16 +1,20 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import toast from "react-hot-toast";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; // Importing eye icons
 import { Link } from "react-router-dom";
+import { loginApi } from "../../api-request/authApi";
+import Swal from "sweetalert2";
+import SpinnerLoader from "../loader/SpinnerLoader";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-
+  const [loader,setLoader] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
@@ -18,7 +22,35 @@ const LoginForm = () => {
       email,
       password,
     };
-    // Add your login logic here
+
+    console.log(email, password)
+
+    if (!email) {
+      toast.error("Please enter a valid email")
+    } else if (!password) {
+      toast.error("Please enter a valid password")
+    } else {
+      setLoader(true);
+      const res = await loginApi(payload);
+      setLoader(false);
+      if (res) {
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Login successfully",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      } else {
+        Swal.fire({
+          position: "top-center",
+          icon: "failure",
+          title: "Login fail",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    }
   };
 
   return (
@@ -41,7 +73,6 @@ const LoginForm = () => {
               name="email"
               placeholder="Enter your email"
               className="w-full px-4 py-2 text-gray-800 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-green-500"
-              required
             />
           </div>
 
@@ -56,7 +87,6 @@ const LoginForm = () => {
               name="password"
               placeholder="Enter your password"
               className="w-full px-4 py-2 text-gray-800 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-green-500"
-              required
             />
             <button
               type="button"
@@ -93,6 +123,13 @@ const LoginForm = () => {
           </div>
         </form>
       </div>
+      {
+        loader && (
+          <div>
+            <SpinnerLoader></SpinnerLoader>
+          </div>
+        )
+      }
     </div>
   );
 };
