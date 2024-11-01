@@ -1,5 +1,4 @@
 import { useState } from "react";
-import SpinnerLoader from "../full-screen-loder/Spinner";
 import { Link, NavLink } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
@@ -65,11 +64,7 @@ const AdminNavbar = () => {
                     </div>
                 </div>
             </div>
-            {loader && (
-                <div>
-                    <SpinnerLoader />
-                </div>
-            )}
+            
         </>
     );
 };

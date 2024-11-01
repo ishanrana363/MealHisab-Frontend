@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; // Importing eye icons
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginApi } from "../../api-request/authApi";
 import Swal from "sweetalert2";
 import SpinnerLoader from "../loader/SpinnerLoader";
@@ -10,6 +10,7 @@ import SpinnerLoader from "../loader/SpinnerLoader";
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loader,setLoader] = useState(false);
+  const navigate = useNavigate();
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
@@ -34,6 +35,7 @@ const LoginForm = () => {
       const res = await loginApi(payload);
       setLoader(false);
       if (res) {
+        navigate("/dashboard")
         Swal.fire({
           position: "top-center",
           icon: "success",
