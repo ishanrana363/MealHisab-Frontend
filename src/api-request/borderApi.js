@@ -42,11 +42,19 @@ const borderStore = create((set) => ({
             return false;
         }
     },
-    singleBorderDataList : [],
+    singleBorderDataList: [],
     singleBorderDataApi: async (id) => {
         const res = await axios.get(`${baseUrl}/single-border/${id}`);
         if (res.data["status"] === "success") {
-            return  set({ singleBorderDataList : res.data.data }) ;
+            return set({ singleBorderDataList: res.data.data });
+        } else {
+            return false;
+        }
+    },
+    updateBorderApi: async (id, payload) => {
+        const res = await axios.put(`${baseUrl}/border-update/${id}`, payload,);
+        if (res.data["status"] === "success") {
+            return true;
         } else {
             return false;
         }

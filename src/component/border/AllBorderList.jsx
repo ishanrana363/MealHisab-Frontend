@@ -7,11 +7,13 @@ import SpinnerLoader from '../loader/SpinnerLoader';
 import moment from 'moment';
 import { MdDelete } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
+import { deleteAlert } from '../../helper/deleteAlert';
+import Swal from 'sweetalert2';
 
 
 const AllBorderList = () => {
     const navigate = useNavigate();
-    const { totalBorderDataApi, totalBorderDataList, totalBorderLength } = borderStore();
+    const { totalBorderDataApi, totalBorderDataList, totalBorderLength, deleteBorderApi } = borderStore();
     const [loader, setLoader] = useState(false);
     const [perPage, setPerPage] = useState(5);
     const [searchValue, setSearchValue] = useState(0);
@@ -50,6 +52,7 @@ const AllBorderList = () => {
             await totalBorderDataApi(1, perPage, 0);
             setLoader(false);
         }
+        
     };
 
     const submitSearchValue = async () => {
@@ -58,22 +61,36 @@ const AllBorderList = () => {
         setLoader(false);
     };
 
-    // const projectDelete = async (id) => {
-    //     let resp = await deleteAlert();
-    //     if (resp.isConfirmed) {
-    //         setLoader(true);
-    //         let res = await projectDeleteApi(id);
-    //         setLoader(false);
-    //         if (res) {
-    //             setLoader(true);
-    //             await totalBorderDataApi(1, perPage, searchValue);
-    //             setLoader(false);
-    //             toast.success("Deleted successfully");
-    //         } else {
-    //             toast.error("Failed to delete");
-    //         }
-    //     }
-    // };
+    
+
+    const borderDelete = async (id) => {
+        let resp = await deleteAlert();
+        if (resp.isConfirmed) {
+            setLoader(true);
+            let res = await deleteBorderApi(id);
+            setLoader(false);
+            if (res) {
+                setLoader(true);
+                await totalBorderDataApi(1, perPage, searchValue);
+                setLoader(false);
+                Swal.fire({
+                    position: "top-enter",
+                    icon: "success",
+                    title: "Delete successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            } else {
+                Swal.fire({
+                    position: "top-center",
+                    icon: "failure",
+                    title: "Delete fail",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        }
+    };
     return (
         <div>
             <>
@@ -135,7 +152,7 @@ const AllBorderList = () => {
                                     totalBorderDataList && totalBorderDataList.map((item, i) => (
                                         <tr key={i} className="hover:bg-gray-100 text-center cursor-pointer">
                                             <td className="py-3 px-4 border-b">{i + 1}</td>
-                                            <td className="py-3 px-4 border-b">{ item?.name }</td>
+                                            <td className="py-3 px-4 border-b">{item?.name}</td>
                                             <td className="py-3 px-4 border-b">
                                                 <img
                                                     src={item?.img}
@@ -152,12 +169,12 @@ const AllBorderList = () => {
                                             <td className="py-3 px-4 border-b">
                                                 <div className="flex justify-center space-x-2">
                                                     <Link to={`/dashboard/project-update/${item["_id"]}`}>
-                                                        <button className="bg-teal-500 text-white  py-1 rounded hover:bg-teal-600">
-                                                            <span><FaEdit /></span>
+                                                        <button className="bg-teal-500 text-white px-1  py-1 rounded hover:bg-teal-600">
+                                                            <span className='' ><FaEdit /></span>
                                                         </button>
                                                     </Link>
-                                                    <button className="bg-red-500 text-white px-1 rounded hover:bg-red-600">
-                                                        <span><MdDelete /></span>
+                                                    <button onClick={()=>{borderDelete(item._id)}} className="bg-red-500 text-white px-1 rounded hover:bg-red-600">
+                                                        <span ><MdDelete /></span>
                                                     </button>
                                                 </div>
                                             </td>
