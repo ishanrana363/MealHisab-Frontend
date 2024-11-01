@@ -6,6 +6,7 @@ import BorderCreateFormPage from "../pages/border-page/BorderCreateFormPage";
 import AllBorderListPage from './../pages/border-page/AllBorderListPage';
 import BorderUpdateFormPage from './../pages/border-page/BorderUpdateFormPage';
 import BorderDetailsPage from './../pages/border-page/BorderDetailsPage';
+import RiceEntryFromPage from "../pages/rice-page/rice-entry-form-page/RiceEntryFromPage";
 
 
 export const router = createBrowserRouter([
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
             {
                 path : "border-details/:id",
                 element : <BorderDetailsPage></BorderDetailsPage>
+            },
+            {
+                path : "rice-entry",
+                element : <RiceEntryFromPage></RiceEntryFromPage>
             }
         ]
     }

@@ -59,6 +59,15 @@ const borderStore = create((set) => ({
             return false;
         }
     },
+    borderNameList: [],
+    borderNameApi: async () => {
+        const res = await axios.get(`${baseUrl}/border-name`);
+        if (res.data["status"] === "success") {
+            return set({ borderNameList: res.data.data });
+        } else {
+            return false;
+        }
+    },
 }));
 
 export default borderStore;
