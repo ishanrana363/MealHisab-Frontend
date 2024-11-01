@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; // Importing eye icons
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -85,9 +86,9 @@ const LoginForm = () => {
             </a>
             <p className="mt-2 text-sm text-gray-600">
               You have no account?{" "}
-              <a href="/register" className="text-green-600 hover:underline">
+              <Link to="/registration" className="text-green-600 hover:underline">
                 Please register.
-              </a>
+              </Link>
             </p>
           </div>
         </form>
