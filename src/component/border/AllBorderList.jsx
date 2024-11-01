@@ -168,7 +168,7 @@ const AllBorderList = () => {
                                             </td>
                                             <td className="py-3 px-4 border-b">
                                                 <div className="flex justify-center space-x-2">
-                                                    <Link to={`/dashboard/project-update/${item["_id"]}`}>
+                                                    <Link to={`/dashboard/border-update/${item["_id"]}`}>
                                                         <button className="bg-teal-500 text-white px-1  py-1 rounded hover:bg-teal-600">
                                                             <span className='' ><FaEdit /></span>
                                                         </button>
