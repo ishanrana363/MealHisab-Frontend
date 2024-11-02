@@ -24,16 +24,21 @@ const RiceEntryForm = () => {
         e.preventDefault();
         const borderName = e.target.borderName.value;
         const totalPot = e.target.totalPot.value;
+        const date = e.target.date.value;
         const payload = {
             borderName,
-            totalPot
+            totalPot,
+            date,
         };
 
         if (!borderName) {
             toast.error("Please select a border")
         } else if (!totalPot) {
             toast.error("Please enter a total pot")
-        } else {
+        }else if (!date){
+            toast.error("Please select a date")
+        }
+        else {
             const resp = await createAlert();
             if (resp.isConfirmed) {
                 setLoader(true);
@@ -106,10 +111,24 @@ const RiceEntryForm = () => {
                         />
                     </div>
 
+                    {/* date */}
+                    <div className="mb-4">
+                        <label htmlFor="date" className="block text-gray-700 font-medium mb-2">
+                        Date
+                        </label>
+                        <input
+                            type="date"
+                            id="date"
+                            name="date"
+                            placeholder="Enter Total Rice Pot"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                        />
+                    </div>
+
                     {/* Submit Button */}
                     <button
                         type="submit"
-                        className="w-full bg-blue-500 text-white py-2 rounded-md font-semibold hover:bg-blue-600 transition-colors"
+                        className="w-full bg-grdate text-white py-2 rounded-md font-semibold  transition-colors"
                     >
                         Submit
                     </button>

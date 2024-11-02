@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
 import SpinnerLoader from "../loader/SpinnerLoader";
+import { createAlert } from "../../helper/createAlert";
 
 const BorderCreateForm = () => {
     const { borderCreateApi } = borderStore()
@@ -62,25 +63,28 @@ const BorderCreateForm = () => {
         } else if (!img) {
             toast.error("Please upload a valid image");
         } else {
-            setLoader(true);
-            const res = await borderCreateApi(payload);
-            setLoader(false);
-            if (res) {
-                Swal.fire({
-                    position: "top-center",
-                    icon: "success",
-                    title: "Border account has been created successfully",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            } else {
-                Swal.fire({
-                    position: "top-center",
-                    icon: "error",
-                    title: "Failed to create border account",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
+            const resp = await createAlert();
+            if (resp.isConfirmed) {
+                setLoader(true);
+                const res = await borderCreateApi(payload);
+                setLoader(false);
+                if (res) {
+                    Swal.fire({
+                        position: "top-center",
+                        icon: "success",
+                        title: "Border account has been created successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                } else {
+                    Swal.fire({
+                        position: "top-center",
+                        icon: "error",
+                        title: "Failed to create border account",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
             }
         }
         e.target.reset();
