@@ -7,6 +7,7 @@ import AllBorderListPage from './../pages/border-page/AllBorderListPage';
 import BorderUpdateFormPage from './../pages/border-page/BorderUpdateFormPage';
 import BorderDetailsPage from './../pages/border-page/BorderDetailsPage';
 import RiceEntryFromPage from "../pages/rice-page/rice-entry-form-page/RiceEntryFromPage";
+import RiceCalculationFormPage from './../pages/rice-page/rice-entry-form-page/RiceCalculationFormPage';
 
 
 export const router = createBrowserRouter([
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
             {
                 path : "rice-entry",
                 element : <RiceEntryFromPage></RiceEntryFromPage>
+            },
+            {
+                path : "rice-calculation",
+                element : <RiceCalculationFormPage></RiceCalculationFormPage>
             }
         ]
     }

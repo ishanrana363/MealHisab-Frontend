@@ -22,16 +22,18 @@ const RiceEntryForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const borderName = e.target.borderName.value;
+        const borderId = e.target.borderId.value;
         const totalPot = e.target.totalPot.value;
         const date = e.target.date.value;
         const payload = {
-            borderName,
+            borderId,
             totalPot,
             date,
         };
 
-        if (!borderName) {
+        console.log(borderId)
+
+        if (!borderId) {
             toast.error("Please select a border")
         } else if (!totalPot) {
             toast.error("Please enter a total pot")
@@ -80,12 +82,12 @@ const RiceEntryForm = () => {
                     <h2 className="text-2xl font-semibold text-gray-800 mb-4">Rice Pot Form</h2>
                     {/* Border Name Field */}
                     <div className="mb-4">
-                        <label htmlFor="borderName" className="block text-gray-700 font-medium mb-2">
+                        <label htmlFor="borderId" className="block text-gray-700 font-medium mb-2">
                             Border Name
                         </label>
                         <select
-                            id="borderName"
-                            name="borderName"
+                            id="borderId"
+                            name="borderId"
                             className="form-select w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring focus:ring-indigo-200"
                         >
                             <option value="">Select Border Name</option>
