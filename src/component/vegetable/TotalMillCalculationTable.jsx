@@ -2,7 +2,7 @@
 import moment from 'moment'
 import React from 'react'
 
-const TotalMillCalculationTable = ({totalMillData,borderMillDataList}) => {
+const TotalMillCalculationTable = ({ totalMillData, borderMillDataList, totalCalculationMoney }) => {
     return (
         <div>
             <div>
@@ -37,8 +37,9 @@ const TotalMillCalculationTable = ({totalMillData,borderMillDataList}) => {
                                 ))}
                             </tbody>
                         </table>
-                        <div className="mt-4 text-center">
-                            {totalMillData !== undefined && <p>মোট : {totalMillData} টাকা </p>}
+                        <div className="mt-4 text-center flex justify-center items-center gap-10 ">
+                            {totalMillData !== undefined && <p>মোট মিল : {totalMillData} টা </p>}
+                            {totalCalculationMoney !== undefined && <p>মোট : {totalCalculationMoney} টাকা </p>}
                         </div>
                     </div>
                 </div>

@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 const TotalMillCalculation = () => {
   const { borderNameApi, borderNameList } = borderStore();
-  const { borderMillDataApi, borderMillDataList, totalMillData } = millStore();
+  const { borderMillDataApi, borderMillDataList, totalMillData,totalCalculationMoney } = millStore();
   const [show, setShow] = useState(false);
   const [loader, setLoader] = useState(false);
 
@@ -149,7 +149,7 @@ const TotalMillCalculation = () => {
       {/* Show the Rice Calculation Table if data is available */}
       {show && (
         borderMillDataList.length > 0 ? (
-          <TotalMillCalculationTable borderMillDataList={borderMillDataList} totalMillData={totalMillData} />
+          <TotalMillCalculationTable borderMillDataList={borderMillDataList} totalMillData={totalMillData} totalCalculationMoney= {totalCalculationMoney} />
         ) : (
           <div className="text-center mt-4">
             <h1>No data found for the selected criteria.</h1>

@@ -17,11 +17,15 @@ const millStore = create((set) => ({
     },
     totalMillData: [],
     borderMillDataList: [],
+    totalCalculationMoney : [],
+
     borderMillDataApi: async (payload) => {
         const res = await axiosPublic.post('/total-mill-calculation', payload);
         if (res.data.status === "success") {
-            set({ totalMillData: parseFloat(res.data.data) });
+            set({ totalCalculationMoney: parseFloat(res.data.data) });
+            set({ totalMillData: parseFloat(res.data.dataThree) });
             set({ borderMillDataList: res.data.dataTow });
+
             return;
         } else {
             return false;
