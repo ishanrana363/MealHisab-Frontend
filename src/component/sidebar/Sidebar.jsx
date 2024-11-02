@@ -22,7 +22,7 @@ const Sidebar = () => {
             className={`bg-grdate text-[black] transition-all duration-300 ${isSidebarOpen ? 'w-64' : 'w-14'}`}>
             <div className="flex justify-between items-center p-4 gap-8">
                 <div className={`text-2xl font-bold ${!isSidebarOpen && 'hidden'}`}>
-                    <NavLink to={"/dashboard"}><p>Portfolio</p></NavLink>
+                    <NavLink className={"text-white"} to={"/dashboard"}><p>Mill-Hisab</p></NavLink>
                 </div>
                 <button onClick={toggleSidebar} className="text-[black] focus:outline-none">
                     {isSidebarOpen ? <IoCloseCircleOutline className='text-4xl' /> : <MdMenuOpen className='text-3xl' />}
@@ -108,6 +108,15 @@ const Sidebar = () => {
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Daily Rice Entry</span>
+                                    </NavLink>
+                                </li>
+                                <li className="mt-2">
+                                    <NavLink
+                                        to="/dashboard/daily-rice-calculation"
+                                        className={`${pathname === "/dashboard/daily-rice-calculation" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
+                                    >
+                                        <MdAddCircleOutline className='text-xl' />
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Daily Rice Calculation</span>
                                     </NavLink>
                                 </li>
                             </ul>

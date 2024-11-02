@@ -20,8 +20,7 @@ const riceEntryStore = create((set) => ({
         console.log(payload)
         const res = await axioPublic.post('/total-rice-border', payload);
         if (res.data.status === "success") {
-            set({ totalRiceData: parseInt(res.data.data) });
-            console.log(res.data.data)
+            set({ totalRiceData: parseFloat(res.data.data) });
             set({ borderRiceDataList: res.data.dataTow });
             return;
         } else {
@@ -32,6 +31,19 @@ const riceEntryStore = create((set) => ({
         const res = await axioPublic.post('/insert-daily-rice-entry', payload);
         if (res.data.status === "success") {
             return true;
+        } else {
+            return false;
+        }
+    },
+    dailyRiceTotal : [],
+    dailyRiceDataList: [],
+    dailyRiceDataApi: async (payload) => {
+        const res = await axioPublic.post('/total-eaten-rice-border', payload);
+        if (res.data.status === "success") {
+            set({ dailyRiceTotal: parseFloat(res.data.data) });
+            console.log(parseFloat(res.data.data));
+            set({ dailyRiceDataList: res.data.dataTow });
+            return;
         } else {
             return false;
         }

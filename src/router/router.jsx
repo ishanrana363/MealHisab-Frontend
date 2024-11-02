@@ -9,6 +9,7 @@ import BorderDetailsPage from './../pages/border-page/BorderDetailsPage';
 import RiceEntryFromPage from "../pages/rice-page/rice-entry-page/RiceEntryFromPage";
 import RiceCalculationFormPage from '../pages/rice-page/rice-entry-page/RiceCalculationFormPage';
 import DailyRiceEntryFormPage from './../pages/rice-page/daily-rice-entry/DailyRiceEntryFormPage';
+import DailyRiceCalculationPage from './../pages/rice-page/daily-rice-entry/DailyRiceCalculationPage';
 
 
 export const router = createBrowserRouter([
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
             {
                 path : "daily-rice-entry-form",
                 element : <DailyRiceEntryFormPage></DailyRiceEntryFormPage>
+            },
+            {
+                path : "daily-rice-calculation",
+                element : <DailyRiceCalculationPage></DailyRiceCalculationPage>
             }
         ]
     }

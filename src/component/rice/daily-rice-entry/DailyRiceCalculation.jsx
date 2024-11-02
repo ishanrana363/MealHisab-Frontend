@@ -1,72 +1,78 @@
-import React, { useEffect, useState } from 'react';
-import borderStore from '../../../api-request/borderApi';
-import riceEntryStore from '../../../api-request/riceEntry';
-import toast from 'react-hot-toast';
-import RiceCalculationTable from './RiceCalculationTable';
-import SpinnerLoader from '../../loader/SpinnerLoader';
-import { Helmet } from 'react-helmet-async';
+import { useEffect, useState, useCallback } from "react";
+import { Helmet } from "react-helmet-async";
+import borderStore from "../../../api-request/borderApi";
+import riceEntryStore from "../../../api-request/riceEntry";
+import toast from "react-hot-toast";
+import SpinnerLoader from "../../loader/SpinnerLoader";
+import RiceCalculationTable from "../rice-entry/RiceCalculationTable";
+import DailyRiceCalculationTable from './DailyRiceCalculationTable';
 
-const RiceCalculationForm = () => {
+const DailyRiceCalculation = () => {
     const { borderNameApi, borderNameList } = borderStore();
-    const { totalRiceDataApi, borderRiceDataList, totalRiceData } = riceEntryStore();
-    const [loader, setLoader] = useState(false);
+    const { dailyRiceDataApi, dailyRiceDataList, dailyRiceTotal } = riceEntryStore();
     const [show, setShow] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [formData, setFormData] = useState({ borderId: '', startDate: '', endDate: '' });
+    const [loader, setLoader] = useState(false);
 
+    // Load border names on component mount
     useEffect(() => {
-        (async () => {
+        const fetchBorderNames = async () => {
             setLoader(true);
-            await borderNameApi();
-            setLoader(false);
-        })();
-    }, []);
+            try {
+                await borderNameApi();
+            } catch (error) {
+                toast.error("Failed to load border names");
+            } finally {
+                setLoader(false);
+            }
+        };
+        fetchBorderNames();
+    }, [borderNameApi]);
 
-    const handleChange = (e) => {
-        e.preventDefault();
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
-    };
-
+    // Submit handler with validation and API call
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { borderId, startDate, endDate } = formData;
-        const payload = { borderId, startDate, endDate };
+        const borderId = e.target.borderId.value;
+        const startDate = e.target.startDate.value;
+        const endDate = e.target.endDate.value;
 
+        // Form validation
         if (!borderId) {
             toast.error("Select a border name");
             return;
-        } else if (!startDate) {
+        }
+        if (!startDate) {
             toast.error("Enter a valid start date");
             return;
-        } else if (!endDate) {
+        }
+        if (!endDate) {
             toast.error("Enter a valid end date");
             return;
         }
 
+        const payload = { borderId, startDate, endDate };
+
         try {
-            setIsSubmitting(true); // Start submitting
             setLoader(true);
-            await totalRiceDataApi(payload); // Fetch data based on the payload
-            setShow(true); // Show the table
+            await dailyRiceDataApi(payload);
+            setShow(true);
         } catch (error) {
             toast.error("Failed to fetch data");
         } finally {
-            setIsSubmitting(false); // End submitting
             setLoader(false);
         }
-        e.target.reset();
+
+        e.target.reset(); // Reset form after submission
     };
 
     return (
         <div>
             <Helmet>
-                <title>Milhisab | Rice Calculation Form</title>
+                <title>Milhisab | Daily Rice Calculation Form</title>
             </Helmet>
             <div className="mx-auto p-6 bg-white rounded-lg shadow-md">
                 <h2 className="text-2xl font-bold text-center mb-6">Rice Calculation</h2>
                 <form onSubmit={handleSubmit}>
-                    <div className='flex items-center justify-center gap-8'>
+                    <div className="flex items-center justify-center gap-8">
                         {/* Border Name Field */}
                         <div className="mb-7">
                             <label htmlFor="borderId" className="block text-gray-700 font-medium mt-3">
@@ -75,7 +81,6 @@ const RiceCalculationForm = () => {
                             <select
                                 id="borderId"
                                 name="borderId"
-                                onChange={handleChange}
                                 className="form-select w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm text-black focus:outline-none focus:ring focus:ring-indigo-200"
                             >
                                 <option value="">Select Border Name</option>
@@ -94,8 +99,7 @@ const RiceCalculationForm = () => {
                             <input
                                 type="date"
                                 id="startDate"
-                                name='startDate'
-                                onChange={handleChange}
+                                name="startDate"
                                 className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-opacity-50"
                             />
                         </div>
@@ -107,18 +111,17 @@ const RiceCalculationForm = () => {
                             <input
                                 type="date"
                                 id="endDate"
-                                name='endDate'
-                                onChange={handleChange}
+                                name="endDate"
                                 className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-opacity-50"
                             />
                         </div>
                         {/* Submit Button */}
                         <button
                             type="submit"
-                            className={`btn btn-primary ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
-                            disabled={isSubmitting} // Disable button when submitting
+                            className={`btn btn-primary ${loader ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            disabled={loader}
                         >
-                            {isSubmitting ? (
+                            {loader ? (
                                 <span className="flex items-center justify-center">
                                     <svg
                                         className="animate-spin h-5 w-5 mr-3 text-white"
@@ -137,21 +140,26 @@ const RiceCalculationForm = () => {
                     </div>
                 </form>
             </div>
+
             {/* Show the Rice Calculation Table if data is available */}
-            {show && borderRiceDataList.length > 0 ? (
-                <RiceCalculationTable riceList={borderRiceDataList} totalPot={totalRiceData} />
-            ) : show && borderRiceDataList.length === 0 ? (
+            {show && (
+                dailyRiceDataList.length > 0 ? (
+                    <DailyRiceCalculationTable dailyRiceDataList={dailyRiceDataList} dailyRiceTotal={dailyRiceTotal} />
+                ) : (
+                    <div className="text-center mt-4">
+                        <h1>No data found for the selected criteria.</h1>
+                    </div>
+                )
+            )}
+
+            {/* Loader for data fetching */}
+            {loader && (
                 <div className="text-center mt-4">
-                    <h1>No data found for the selected criteria.</h1>
+                    <SpinnerLoader />
                 </div>
-            ) : null}
-            {
-                loader && <div>
-                    <SpinnerLoader></SpinnerLoader>
-                </div>
-            }
+            )}
         </div>
     );
-}
+};
 
-export default RiceCalculationForm;
+export default DailyRiceCalculation;
