@@ -14,6 +14,7 @@ import VegetableEntryFormPage from './../pages/vegetable/VegetableEntryFormPage'
 import TotalMillCalculationPage from './../pages/vegetable/TotalMillCalculationPage';
 import InsertBazarFormPage from "../pages/bazar-page/InsertBazarFormPage";
 import TotalCalculationBazarForm from "../pages/bazar-page/TotalCalculationBazarForm";
+import BazarListPage from "../pages/bazar-page/BazarListPage";
 
 
 export const router = createBrowserRouter([
@@ -76,6 +77,10 @@ export const router = createBrowserRouter([
             {
                 path : "calculation-bazar-border",
                 element : <TotalCalculationBazarForm></TotalCalculationBazarForm>
+            },
+            {
+                path : "calculation-bazar",
+                element : <BazarListPage></BazarListPage>,
             }
         ]
     }

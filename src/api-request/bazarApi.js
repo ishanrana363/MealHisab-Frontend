@@ -24,6 +24,18 @@ const bazarStore = create((set) => ({
             return false;
         }
     },
+    totalBazarMoney: [],
+    bazarDataList: [],
+    bazarDataListApi: async (payload) => {
+        const res = await axiosPublic.post('/total-bazar-list', payload);
+        if (res.data.status === "success") {
+            set({ totalBazarMoney: parseFloat(res.data.data) });
+            set({ bazarDataList: res.data.dataTow });
+            return;
+        } else {
+            return false;
+        }
+    },
 }));
 
 export default bazarStore;
