@@ -20,10 +20,18 @@ const riceEntryStore = create((set) => ({
         console.log(payload)
         const res = await axioPublic.post('/total-rice-border', payload);
         if (res.data.status === "success") {
-            set({ totalRiceData: parseInt(res.data.data)});
+            set({ totalRiceData: parseInt(res.data.data) });
             console.log(res.data.data)
             set({ borderRiceDataList: res.data.dataTow });
             return;
+        } else {
+            return false;
+        }
+    },
+    dailyRiceEntryApi: async (payload) => {
+        const res = await axioPublic.post('/insert-daily-rice-entry', payload);
+        if (res.data.status === "success") {
+            return true;
         } else {
             return false;
         }

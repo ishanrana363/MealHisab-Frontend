@@ -9,9 +9,8 @@ import SpinnerLoader from '../../loader/SpinnerLoader';
 
 const DailyRiceEntryForm = () => {
     const { borderNameList, borderNameApi } = borderStore();
-    const { riceInsertApi } = riceEntryStore();
+    const { dailyRiceEntryApi } = riceEntryStore();
     const [loader, setLoader] = useState(false);
-    const [selectedDate, setSelectedDate] = useState(''); // State to store selected date
 
     useEffect(() => {
         (async () => {
@@ -24,17 +23,17 @@ const DailyRiceEntryForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const borderId = e.target.borderId.value;
-        const totalPot = e.target.pot.value;
+        const pot = e.target.pot.value;
         const entry_date = e.target.entry_date.value;
         const payload = {
             borderId,
-            totalPot,
+            pot,
             entry_date,
         };
 
         if (!borderId) {
             toast.error("Please select a border");
-        } else if (!totalPot) {
+        } else if (!pot) {
             toast.error("Please enter a total pot");
         } else if (!entry_date) {
             toast.error("Please select a date");
@@ -42,7 +41,7 @@ const DailyRiceEntryForm = () => {
             const resp = await createAlert();
             if (resp.isConfirmed) {
                 setLoader(true);
-                let res = await riceInsertApi(payload);
+                let res = await dailyRiceEntryApi(payload);
                 setLoader(false);
                 if (res) {
                     Swal.fire({
@@ -53,7 +52,6 @@ const DailyRiceEntryForm = () => {
                         timer: 1500
                     });
                     e.target.reset();
-                    setSelectedDate(''); // Reset selected date
                 } else {
                     Swal.fire({
                         position: "top-center",
@@ -68,11 +66,7 @@ const DailyRiceEntryForm = () => {
         }
     };
 
-    // Handle date selection
-    const handleDateChange = (e) => {
-        const selected = e.target.value;
-        setSelectedDate(new Date(selected).toLocaleDateString());
-    };
+   
 
     return (
         <div className='my-2' >
@@ -112,7 +106,7 @@ const DailyRiceEntryForm = () => {
                             Total Rice Pot
                         </label>
                         <input
-                            type="number"
+                            type="text"
                             id="pot"
                             name="pot"
                             placeholder="Enter Total Rice Pot"
@@ -129,7 +123,6 @@ const DailyRiceEntryForm = () => {
                             type="date"
                             id="entry_date"
                             name="entry_date"
-                            onChange={handleDateChange} // Call date change handler
                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                         />
                     </div>
