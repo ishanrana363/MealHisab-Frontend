@@ -49,7 +49,7 @@ const Sidebar = () => {
                                 <li>
                                     <NavLink
                                         to="/dashboard/border-create"
-                                        className={`${pathname === "/dashboard/border-create" ? ` text-textColor bg-[#FF9100] ` : `bg-[#D5ED9F] text-[black]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/border-create" ? ` text-textColor bg-[#FF9100] ` : `bg-[#D5ED9F] text-[black]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Border Create</span>
@@ -58,7 +58,7 @@ const Sidebar = () => {
                                 <li className="mt-2">
                                     <NavLink
                                         to="/dashboard/all-border"
-                                        className={`${pathname === "/dashboard/all-border" ? `bg-[#FF9100]  text-[black]` : `bg-[#D5ED9F] text-[black]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/all-border" ? `bg-[#FF9100]  text-[black]` : `bg-[#D5ED9F] text-[black]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>All Border</span>
@@ -86,7 +86,7 @@ const Sidebar = () => {
                                 <li>
                                     <NavLink
                                         to="/dashboard/rice-entry"
-                                        className={`${pathname === "/dashboard/rice-entry" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F] text-[black]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/rice-entry" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F] text-[black]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Rice Entry</span>
@@ -95,7 +95,7 @@ const Sidebar = () => {
                                 <li className="mt-2">
                                     <NavLink
                                         to="/dashboard/rice-calculation"
-                                        className={`${pathname === "/dashboard/rice-calculation" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/rice-calculation" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Rice Calculation</span>
@@ -104,53 +104,45 @@ const Sidebar = () => {
                                 <li className="mt-2">
                                     <NavLink
                                         to="/dashboard/daily-rice-entry-form"
-                                        className={`${pathname === "/dashboard/daily-rice-entry-form" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/daily-rice-entry-form" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Daily Rice Entry</span>
                                     </NavLink>
                                 </li>
-                                <li className="mt-2">
-                                    <NavLink
-                                        to="/dashboard/daily-rice-calculation"
-                                        className={`${pathname === "/dashboard/daily-rice-calculation" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
-                                    >
-                                        <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Daily Rice Calculation</span>
-                                    </NavLink>
-                                </li>
+                                
                             </ul>
                         )}
                     </li>
 
-                    {/* Service Section */}
+                    {/* Vegitable and  non-vegetarian Section */}
                     <li>
                         <div
                             className="flex justify-between items-center cursor-pointer px-3 py-2  rounded-lg"
-                            onClick={() => handleMenuClick('service')}
+                            onClick={() => handleMenuClick('vegetable')}
                         >
                             <div className="flex items-center">
                                 <MdOutlineManageSearch className='text-xl' />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Service</span>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 text-sm font-bold text-white `}>Vegetable</span>
                             </div>
-                            {activeMenu === 'service' ? <MdExpandLess /> : <MdExpandMore />}
+                            {activeMenu === 'vegetable' ? <MdExpandLess /> : <MdExpandMore />}
                         </div>
 
-                        {activeMenu === 'service' && (
-                            <ul className="pl-6">
-                                <li>
+                        {activeMenu === 'vegetable' && (
+                            <ul className="pl-6 my-3 ">
+                                <li className="mt-2">
                                     <NavLink
-                                        to="/dashboard/service-create"
-                                        className={`${pathname === "/dashboard/service-create" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
+                                        to="/dashboard/vegetable-entry"
+                                        className={`${pathname === "/dashboard/vegetable-entry" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>Service Create</span>
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Daily Vegetable Entry </span>
                                     </NavLink>
                                 </li>
                                 <li className="mt-2">
                                     <NavLink
                                         to="/dashboard/all-services"
-                                        className={`${pathname === "/dashboard/all-services" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/all-services" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>All Services</span>
@@ -177,7 +169,7 @@ const Sidebar = () => {
                                 <li>
                                     <NavLink
                                         to="/dashboard/feedback-create"
-                                        className={`${pathname === "/dashboard/feedback-create" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/feedback-create" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>Create Feedback</span>
@@ -186,7 +178,7 @@ const Sidebar = () => {
                                 <li className="mt-2">
                                     <NavLink
                                         to="/dashboard/all-feedback"
-                                        className={`${pathname === "/dashboard/all-feedback" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/all-feedback" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>All Feedback</span>
@@ -213,7 +205,7 @@ const Sidebar = () => {
                                 <li>
                                     <NavLink
                                         to="/dashboard/blog-create"
-                                        className={`${pathname === "/dashboard/blog-create" ? `bg-[#FF9100] text-[black] ` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/blog-create" ? `bg-[#FF9100] text-[black] ` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>Create Blog</span>
@@ -222,7 +214,7 @@ const Sidebar = () => {
                                 <li className="mt-2">
                                     <NavLink
                                         to="/dashboard/all-blog"
-                                        className={`${pathname === "/dashboard/all-blog" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/all-blog" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>All Blog</span>
@@ -250,7 +242,7 @@ const Sidebar = () => {
                                 <li>
                                     <NavLink
                                         to="/dashboard/logo-upload"
-                                        className={`${pathname === "/dashboard/logo-upload" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/logo-upload" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} `}>Logo Upload</span>
@@ -259,7 +251,7 @@ const Sidebar = () => {
                                 <li className="mt-2">
                                     <NavLink
                                         to="/dashboard/all-logo"
-                                        className={`${pathname === "/dashboard/all-logo" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/all-logo" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>All Logo</span>

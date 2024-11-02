@@ -64,6 +64,9 @@ const RiceCalculationForm = () => {
                 <title>Milhisab | Rice Calculation Form</title>
             </Helmet>
             <div className="mx-auto p-6 bg-white rounded-lg shadow-md">
+                <h2 className="text-2xl text-center font-semibold text-gray-800 mb-4">
+                    {new Date().toLocaleDateString()}
+                </h2>
                 <h2 className="text-2xl font-bold text-center mb-6">Rice Calculation</h2>
                 <form onSubmit={handleSubmit}>
                     <div className='flex items-center justify-center gap-8'>

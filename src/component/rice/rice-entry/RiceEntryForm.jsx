@@ -37,7 +37,7 @@ const RiceEntryForm = () => {
             toast.error("Please select a border")
         } else if (!totalPot) {
             toast.error("Please enter a total pot")
-        }else if (!date){
+        } else if (!date) {
             toast.error("Please select a date")
         }
         else {
@@ -76,6 +76,9 @@ const RiceEntryForm = () => {
             </Helmet>
             <div className="flex items-center justify-center">
                 <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+                    <h2 className="text-2xl text-center font-semibold text-gray-800 mb-4">
+                        {new Date().toLocaleDateString()}
+                    </h2>
                     <h2 className="text-2xl font-semibold text-gray-800 mb-4">Rice Pot Form</h2>
                     {/* Border Name Field */}
                     <div className="mb-4">
@@ -113,7 +116,7 @@ const RiceEntryForm = () => {
                     {/* date */}
                     <div className="mb-4">
                         <label htmlFor="date" className="block text-gray-700 font-medium mb-2">
-                        Date
+                            Date
                         </label>
                         <input
                             type="date"
