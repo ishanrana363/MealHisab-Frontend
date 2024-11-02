@@ -140,12 +140,12 @@ const Sidebar = () => {
                                     </NavLink>
                                 </li>
                                 <li className="mt-2">
-                                    <NavLink
-                                        to="/dashboard/all-services"
-                                        className={`${pathname === "/dashboard/all-services" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
+                                <NavLink
+                                        to="/dashboard/mill-calculaton"
+                                        className={`${pathname === "/dashboard/mill-calculaton" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>All Services</span>
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Daily Mill Calculation</span>
                                     </NavLink>
                                 </li>
                             </ul>

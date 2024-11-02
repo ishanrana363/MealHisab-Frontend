@@ -4,7 +4,6 @@ import borderStore from "../../../api-request/borderApi";
 import riceEntryStore from "../../../api-request/riceEntry";
 import toast from "react-hot-toast";
 import SpinnerLoader from "../../loader/SpinnerLoader";
-import RiceCalculationTable from "../rice-entry/RiceCalculationTable";
 import DailyRiceCalculationTable from './DailyRiceCalculationTable';
 
 const DailyRiceCalculation = () => {
