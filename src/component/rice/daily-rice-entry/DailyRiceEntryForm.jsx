@@ -1,16 +1,17 @@
-import { Helmet } from "react-helmet-async";
-import borderStore from "../../../api-request/borderApi";
-import { useEffect, useState } from "react";
-import { createAlert } from './../../../helper/createAlert';
-import riceEntryStore from "../../../api-request/riceEntry";
-import Swal from "sweetalert2";
-import SpinnerLoader from "../../loader/SpinnerLoader";
-import toast from "react-hot-toast";
+import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import toast from 'react-hot-toast';
+import Swal from 'sweetalert2';
+import { createAlert } from '../../../helper/createAlert';
+import riceEntryStore from '../../../api-request/riceEntry';
+import borderStore from '../../../api-request/borderApi';
+import SpinnerLoader from '../../loader/SpinnerLoader';
 
-const RiceEntryForm = () => {
+const DailyRiceEntryForm = () => {
     const { borderNameList, borderNameApi } = borderStore();
     const { riceInsertApi } = riceEntryStore();
     const [loader, setLoader] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(''); // State to store selected date
 
     useEffect(() => {
         (async () => {
@@ -23,24 +24,21 @@ const RiceEntryForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const borderId = e.target.borderId.value;
-        const totalPot = e.target.totalPot.value;
-        const date = e.target.date.value;
+        const totalPot = e.target.pot.value;
+        const entry_date = e.target.entry_date.value;
         const payload = {
             borderId,
             totalPot,
-            date,
+            entry_date,
         };
 
-        console.log(borderId)
-
         if (!borderId) {
-            toast.error("Please select a border")
+            toast.error("Please select a border");
         } else if (!totalPot) {
-            toast.error("Please enter a total pot")
-        }else if (!date){
-            toast.error("Please select a date")
-        }
-        else {
+            toast.error("Please enter a total pot");
+        } else if (!entry_date) {
+            toast.error("Please select a date");
+        } else {
             const resp = await createAlert();
             if (resp.isConfirmed) {
                 setLoader(true);
@@ -55,6 +53,7 @@ const RiceEntryForm = () => {
                         timer: 1500
                     });
                     e.target.reset();
+                    setSelectedDate(''); // Reset selected date
                 } else {
                     Swal.fire({
                         position: "top-center",
@@ -67,16 +66,27 @@ const RiceEntryForm = () => {
                 }
             }
         }
-    }
+    };
+
+    // Handle date selection
+    const handleDateChange = (e) => {
+        const selected = e.target.value;
+        setSelectedDate(new Date(selected).toLocaleDateString());
+    };
 
     return (
-        <div>
+        <div className='my-2' >
             <Helmet>
-                <title>Rice Pot Entry | Meal Hisab</title>
+                <title>Daily Rice Entry | Meal Hisab</title>
             </Helmet>
             <div className="flex items-center justify-center">
                 <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
-                    <h2 className="text-2xl font-semibold text-gray-800 mb-4">Rice Pot Form</h2>
+                    <h2 className="text-2xl text-center font-semibold text-gray-800 mb-4">
+                        {new Date().toLocaleDateString()}
+                    </h2>
+                    <h3 className="text-lg font-medium text-center text-gray-600 mb-4">
+                        Daily Rice Entry Form
+                    </h3>
                     {/* Border Name Field */}
                     <div className="mb-4">
                         <label htmlFor="borderId" className="block text-gray-700 font-medium mb-2">
@@ -98,28 +108,28 @@ const RiceEntryForm = () => {
 
                     {/* Total Rice Pot Field */}
                     <div className="mb-4">
-                        <label htmlFor="totalRicePot" className="block text-gray-700 font-medium mb-2">
+                        <label htmlFor="pot" className="block text-gray-700 font-medium mb-2">
                             Total Rice Pot
                         </label>
                         <input
                             type="number"
-                            id="totalRicePot"
-                            name="totalPot"
+                            id="pot"
+                            name="pot"
                             placeholder="Enter Total Rice Pot"
                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                         />
                     </div>
 
-                    {/* date */}
+                    {/* Date Picker */}
                     <div className="mb-4">
-                        <label htmlFor="date" className="block text-gray-700 font-medium mb-2">
-                        Date
+                        <label htmlFor="entry_date" className="block text-gray-700 font-medium mb-2">
+                        Entry Date
                         </label>
                         <input
                             type="date"
-                            id="date"
-                            name="date"
-                            placeholder="Enter Total Rice Pot"
+                            id="entry_date"
+                            name="entry_date"
+                            onChange={handleDateChange} // Call date change handler
                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                         />
                     </div>
@@ -127,21 +137,20 @@ const RiceEntryForm = () => {
                     {/* Submit Button */}
                     <button
                         type="submit"
-                        className="w-full bg-grdate text-white py-2 rounded-md font-semibold  transition-colors"
+                        className="w-full bg-indigo-600 text-white py-2 rounded-md font-semibold transition-colors hover:bg-indigo-700"
+                        disabled={loader} // Disable button while loading
                     >
-                        Submit
+                        {loader ? <SpinnerLoader /> : "Submit"}
                     </button>
                 </form>
             </div>
-            {
-                loader && (
-                    <div>
-                        <SpinnerLoader></SpinnerLoader>
-                    </div>
-                )
-            }
+            {loader && (
+                <div>
+                    <SpinnerLoader />
+                </div>
+            )}
         </div>
     );
 };
 
-export default RiceEntryForm;
+export default DailyRiceEntryForm;

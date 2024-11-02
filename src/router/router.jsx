@@ -6,8 +6,9 @@ import BorderCreateFormPage from "../pages/border-page/BorderCreateFormPage";
 import AllBorderListPage from './../pages/border-page/AllBorderListPage';
 import BorderUpdateFormPage from './../pages/border-page/BorderUpdateFormPage';
 import BorderDetailsPage from './../pages/border-page/BorderDetailsPage';
-import RiceEntryFromPage from "../pages/rice-page/rice-entry-form-page/RiceEntryFromPage";
-import RiceCalculationFormPage from './../pages/rice-page/rice-entry-form-page/RiceCalculationFormPage';
+import RiceEntryFromPage from "../pages/rice-page/rice-entry-page/RiceEntryFromPage";
+import RiceCalculationFormPage from '../pages/rice-page/rice-entry-page/RiceCalculationFormPage';
+import DailyRiceEntryFormPage from './../pages/rice-page/daily-rice-entry/DailyRiceEntryFormPage';
 
 
 export const router = createBrowserRouter([
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
             {
                 path : "rice-calculation",
                 element : <RiceCalculationFormPage></RiceCalculationFormPage>
+            },
+            {
+                path : "daily-rice-entry-form",
+                element : <DailyRiceEntryFormPage></DailyRiceEntryFormPage>
             }
         ]
     }

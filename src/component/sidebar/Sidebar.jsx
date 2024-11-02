@@ -101,6 +101,15 @@ const Sidebar = () => {
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Rice Calculation</span>
                                     </NavLink>
                                 </li>
+                                <li className="mt-2">
+                                    <NavLink
+                                        to="/dashboard/daily-rice-entry-form"
+                                        className={`${pathname === "/dashboard/daily-rice-entry-form" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
+                                    >
+                                        <MdAddCircleOutline className='text-xl' />
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Daily Rice Entry</span>
+                                    </NavLink>
+                                </li>
                             </ul>
                         )}
                     </li>

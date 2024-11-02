@@ -3,6 +3,7 @@ import borderStore from '../../../api-request/borderApi';
 import riceEntryStore from '../../../api-request/riceEntry';
 import toast from 'react-hot-toast';
 import RiceCalculationTable from './RiceCalculationTable';
+import SpinnerLoader from '../../loader/SpinnerLoader';
 
 const RiceCalculationForm = () => {
     const { borderNameApi, borderNameList } = borderStore();
@@ -21,6 +22,7 @@ const RiceCalculationForm = () => {
     }, []);
 
     const handleChange = (e) => {
+        e.preventDefault();
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
@@ -131,8 +133,6 @@ const RiceCalculationForm = () => {
                     </div>
                 </form>
             </div>
-            {/* Show Loader if data is being fetched */}
-            {loader && <div className="text-center">Loading...</div>}
             {/* Show the Rice Calculation Table if data is available */}
             {show && borderRiceDataList.length > 0 ? (
                 <RiceCalculationTable riceList={borderRiceDataList} totalPot={totalRiceData} />
@@ -141,6 +141,11 @@ const RiceCalculationForm = () => {
                     <h1>No data found for the selected criteria.</h1>
                 </div>
             ) : null}
+            {
+                loader && <div>
+                    <SpinnerLoader></SpinnerLoader>
+                </div>
+            }
         </div>
     );
 }
