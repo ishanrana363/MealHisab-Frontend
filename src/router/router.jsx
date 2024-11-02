@@ -13,6 +13,7 @@ import DailyRiceCalculationPage from './../pages/rice-page/daily-rice-entry/Dail
 import VegetableEntryFormPage from './../pages/vegetable/VegetableEntryFormPage';
 import TotalMillCalculationPage from './../pages/vegetable/TotalMillCalculationPage';
 import InsertBazarFormPage from "../pages/bazar-page/InsertBazarFormPage";
+import TotalCalculationBazarForm from "../pages/bazar-page/TotalCalculationBazarForm";
 
 
 export const router = createBrowserRouter([
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
             {
                 path : "bazar-insert",
                 element : <InsertBazarFormPage></InsertBazarFormPage>,
+            },
+            {
+                path : "calculation-bazar-border",
+                element : <TotalCalculationBazarForm></TotalCalculationBazarForm>
             }
         ]
     }

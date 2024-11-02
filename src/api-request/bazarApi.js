@@ -3,7 +3,7 @@ import useAxiosPublic from "../hook/UseAxiosPublic";
 
 const axiosPublic = useAxiosPublic();
 
-const bazarStore = create((set)=>({
+const bazarStore = create((set) => ({
     bazarInsertApi: async (payload) => {
         const res = await axiosPublic.post('/insert-daily-bazar', payload);
         if (res.data.status === "success") {
@@ -14,7 +14,16 @@ const bazarStore = create((set)=>({
     },
     totalBazarData: [],
     borderBazarDataList: [],
-    // Add other store properties as needed
+    borderBazarDataApi: async (payload) => {
+        const res = await axiosPublic.post('/total-bazar-calculation', payload);
+        if (res.data.status === "success") {
+            set({ totalBazarData: parseFloat(res.data.data) });
+            set({ borderBazarDataList: res.data.dataTow });
+            return;
+        } else {
+            return false;
+        }
+    },
 }));
 
 export default bazarStore;

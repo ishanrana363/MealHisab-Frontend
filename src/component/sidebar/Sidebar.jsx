@@ -177,11 +177,20 @@ const Sidebar = () => {
                                 </li>
                                 <li className="mt-2">
                                     <NavLink
-                                        to="/dashboard/all-feedback"
-                                        className={`${pathname === "/dashboard/all-feedback" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
+                                        to="/dashboard/calculation-bazar-border"
+                                        className={`${pathname === "/dashboard/calculation-bazar-border" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>All Feedback</span>
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Daily Bazar Cal Border </span>
+                                    </NavLink>
+                                </li>
+                                <li className="mt-2">
+                                    <NavLink
+                                        to="/dashboard/calculation-bazar"
+                                        className={`${pathname === "/dashboard/calculation-bazar" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
+                                    >
+                                        <MdAddCircleOutline className='text-xl' />
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}> Bazar Calculation </span>
                                     </NavLink>
                                 </li>
                             </ul>
