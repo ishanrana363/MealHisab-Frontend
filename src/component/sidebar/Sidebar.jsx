@@ -19,12 +19,12 @@ const Sidebar = () => {
 
     return (
         <aside
-            className={`bg-grdate text-white transition-all duration-300 ${isSidebarOpen ? 'w-64' : 'w-14'}`}>
+            className={`bg-grdate text-[black] transition-all duration-300 ${isSidebarOpen ? 'w-64' : 'w-14'}`}>
             <div className="flex justify-between items-center p-4 gap-8">
                 <div className={`text-2xl font-bold ${!isSidebarOpen && 'hidden'}`}>
                     <NavLink to={"/dashboard"}><p>Portfolio</p></NavLink>
                 </div>
-                <button onClick={toggleSidebar} className="text-white focus:outline-none">
+                <button onClick={toggleSidebar} className="text-[black] focus:outline-none">
                     {isSidebarOpen ? <IoCloseCircleOutline className='text-4xl' /> : <MdMenuOpen className='text-3xl' />}
                 </button>
             </div>
@@ -34,12 +34,12 @@ const Sidebar = () => {
                     {/* border Section */}
                     <li>
                         <div
-                            className="flex justify-between items-center cursor-pointer px-3 py-2 hover:bg-indigo-500/100 rounded-lg"
+                            className="flex justify-between items-center cursor-pointer px-3 py-2  rounded-lg"
                             onClick={() => handleMenuClick('border')}
                         >
                             <div className="flex items-center">
                                 <MdOutlineManageSearch className='text-xl' />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold`}>Border</span>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Border</span>
                             </div>
                             {activeMenu === 'border' ? <MdExpandLess /> : <MdExpandMore />}
                         </div>
@@ -52,53 +52,53 @@ const Sidebar = () => {
                                         className={`${pathname === "/dashboard/border-create" ? ` text-textColor bg-[#FF9100] ` : `bg-[#D5ED9F] text-[black]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>Border Create</span>
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Border Create</span>
                                     </NavLink>
                                 </li>
                                 <li className="mt-2">
                                     <NavLink
                                         to="/dashboard/all-border"
-                                        className={`${pathname === "/dashboard/all-border" ? `bg-[#FF9100]  text-white` : `bg-[#D5ED9F] text-[black]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/all-border" ? `bg-[#FF9100]  text-[black]` : `bg-[#D5ED9F] text-[black]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>All Border</span>
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>All Border</span>
                                     </NavLink>
                                 </li>
                             </ul>
                         )}
                     </li>
 
-                    {/* Skill Section
+                    {/* {/* rice entry Section */}
                     <li>
                         <div
-                            className="flex justify-between items-center cursor-pointer px-3 py-2 hover:bg-indigo-500/100 rounded-lg"
-                            onClick={() => handleMenuClick('skill')}
+                            className="flex justify-between items-center cursor-pointer px-3 py-2  rounded-lg"
+                            onClick={() => handleMenuClick('rice-entry')}
                         >
                             <div className="flex items-center">
                                 <MdOutlineManageSearch className='text-xl' />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold`}>Skill</span>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Rice</span>
                             </div>
-                            {activeMenu === 'skill' ? <MdExpandLess /> : <MdExpandMore />}
+                            {activeMenu === 'rice-entry' ? <MdExpandLess /> : <MdExpandMore />}
                         </div>
 
-                        {activeMenu === 'skill' && (
-                            <ul className="pl-6">
+                        {activeMenu === 'rice-entry' && (
+                            <ul className="pl-6 my-3 ">
                                 <li>
                                     <NavLink
-                                        to="/dashboard/skill-create"
-                                        className={`${pathname === "/dashboard/skill-create" ? `bg-[#55679C] text-white` : `bg-white text-[#4040f6]`} px-3 py-2 flex items-center hover:bg-indigo-500/100 rounded-lg text-lg`}
+                                        to="/dashboard/rice-entry"
+                                        className={`${pathname === "/dashboard/rice-entry" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F] text-[black]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>Skill Create</span>
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Rice Entry</span>
                                     </NavLink>
                                 </li>
                                 <li className="mt-2">
                                     <NavLink
                                         to="/dashboard/all-skill"
-                                        className={`${pathname === "/dashboard/all-skill" ? `bg-[#55679C] text-white` : `bg-white text-[#4040f6]`} px-3 py-2 flex items-center hover:bg-indigo-500/100 rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/all-skill" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>All Skill</span>
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>All Skill</span>
                                     </NavLink>
                                 </li>
                             </ul>
@@ -108,12 +108,12 @@ const Sidebar = () => {
                     {/* Service Section */}
                     <li>
                         <div
-                            className="flex justify-between items-center cursor-pointer px-3 py-2 hover:bg-indigo-500/100 rounded-lg"
+                            className="flex justify-between items-center cursor-pointer px-3 py-2  rounded-lg"
                             onClick={() => handleMenuClick('service')}
                         >
                             <div className="flex items-center">
                                 <MdOutlineManageSearch className='text-xl' />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold`}>Service</span>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Service</span>
                             </div>
                             {activeMenu === 'service' ? <MdExpandLess /> : <MdExpandMore />}
                         </div>
@@ -123,7 +123,7 @@ const Sidebar = () => {
                                 <li>
                                     <NavLink
                                         to="/dashboard/service-create"
-                                        className={`${pathname === "/dashboard/service-create" ? `bg-[#55679C] text-white` : `bg-white text-[#4040f6]`} px-3 py-2 flex items-center hover:bg-indigo-500/100 rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/service-create" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>Service Create</span>
@@ -132,7 +132,7 @@ const Sidebar = () => {
                                 <li className="mt-2">
                                     <NavLink
                                         to="/dashboard/all-services"
-                                        className={`${pathname === "/dashboard/all-services" ? `bg-[#55679C] text-white` : `bg-white text-[#4040f6]`} px-3 py-2 flex items-center hover:bg-indigo-500/100 rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/all-services" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>All Services</span>
@@ -144,12 +144,12 @@ const Sidebar = () => {
                     {/* feedback Section */}
                     <li>
                         <div
-                            className="flex justify-between items-center cursor-pointer px-3 py-2 hover:bg-indigo-500/100 rounded-lg"
+                            className="flex justify-between items-center cursor-pointer px-3 py-2  rounded-lg"
                             onClick={() => handleMenuClick('feedback')}
                         >
                             <div className="flex items-center">
                                 <MdOutlineManageSearch className='text-xl' />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold`}>Feedback</span>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Feedback</span>
                             </div>
                             {activeMenu === 'feedback' ? <MdExpandLess /> : <MdExpandMore />}
                         </div>
@@ -159,7 +159,7 @@ const Sidebar = () => {
                                 <li>
                                     <NavLink
                                         to="/dashboard/feedback-create"
-                                        className={`${pathname === "/dashboard/feedback-create" ? `bg-[#55679C] text-white` : `bg-white text-[#4040f6]`} px-3 py-2 flex items-center hover:bg-indigo-500/100 rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/feedback-create" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>Create Feedback</span>
@@ -168,7 +168,7 @@ const Sidebar = () => {
                                 <li className="mt-2">
                                     <NavLink
                                         to="/dashboard/all-feedback"
-                                        className={`${pathname === "/dashboard/all-feedback" ? `bg-[#55679C] text-white` : `bg-white text-[#4040f6]`} px-3 py-2 flex items-center hover:bg-indigo-500/100 rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/all-feedback" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>All Feedback</span>
@@ -180,12 +180,12 @@ const Sidebar = () => {
                     {/* blog Section */}
                     <li>
                         <div
-                            className="flex justify-between items-center cursor-pointer px-3 py-2 hover:bg-indigo-500/100 rounded-lg"
+                            className="flex justify-between items-center cursor-pointer px-3 py-2  rounded-lg"
                             onClick={() => handleMenuClick('blog')}
                         >
                             <div className="flex items-center">
                                 <MdOutlineManageSearch className='text-xl' />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold`}>Blog</span>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Blog</span>
                             </div>
                             {activeMenu === 'blog' ? <MdExpandLess /> : <MdExpandMore />}
                         </div>
@@ -195,7 +195,7 @@ const Sidebar = () => {
                                 <li>
                                     <NavLink
                                         to="/dashboard/blog-create"
-                                        className={`${pathname === "/dashboard/blog-create" ? `bg-[#55679C] text-white` : `bg-white text-[#4040f6]`} px-3 py-2 flex items-center hover:bg-indigo-500/100 rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/blog-create" ? `bg-[#FF9100] text-[black] ` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>Create Blog</span>
@@ -204,7 +204,7 @@ const Sidebar = () => {
                                 <li className="mt-2">
                                     <NavLink
                                         to="/dashboard/all-blog"
-                                        className={`${pathname === "/dashboard/all-blog" ? `bg-[#55679C] text-white` : `bg-white text-[#4040f6]`} px-3 py-2 flex items-center hover:bg-indigo-500/100 rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/all-blog" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>All Blog</span>
@@ -217,12 +217,12 @@ const Sidebar = () => {
                     {/* logo section */}
                     <li>
                         <div
-                            className="flex justify-between items-center cursor-pointer px-3 py-2 hover:bg-indigo-500/100 rounded-lg"
+                            className="flex justify-between items-center cursor-pointer px-3 py-2  rounded-lg"
                             onClick={() => handleMenuClick('logo')}
                         >
                             <div className="flex items-center">
                                 <MdOutlineManageSearch className='text-xl' />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold`}>logo</span>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>logo</span>
                             </div>
                             {activeMenu === 'logo' ? <MdExpandLess /> : <MdExpandMore />}
                         </div>
@@ -232,7 +232,7 @@ const Sidebar = () => {
                                 <li>
                                     <NavLink
                                         to="/dashboard/logo-upload"
-                                        className={`${pathname === "/dashboard/logo-upload" ? `bg-[#55679C] text-white` : `bg-white text-[#4040f6]`} px-3 py-2 flex items-center hover:bg-indigo-500/100 rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/logo-upload" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} `}>Logo Upload</span>
@@ -241,7 +241,7 @@ const Sidebar = () => {
                                 <li className="mt-2">
                                     <NavLink
                                         to="/dashboard/all-logo"
-                                        className={`${pathname === "/dashboard/all-logo" ? `bg-[#55679C] text-white` : `bg-white text-[#4040f6]`} px-3 py-2 flex items-center hover:bg-indigo-500/100 rounded-lg text-lg`}
+                                        className={`${pathname === "/dashboard/all-logo" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg text-lg`}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>All Logo</span>

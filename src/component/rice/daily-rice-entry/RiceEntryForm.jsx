@@ -1,10 +1,15 @@
 import { Helmet } from "react-helmet-async";
 import borderStore from "../../../api-request/borderApi";
 import { useEffect, useState } from "react";
-import { name } from './../../../../node_modules/jiti/dist/jiti';
+import { createAlert } from './../../../helper/createAlert';
+import riceEntryStore from "../../../api-request/riceEntry";
+import Swal from "sweetalert2";
+import SpinnerLoader from "../../loader/SpinnerLoader";
+import toast from "react-hot-toast";
 
 const RiceEntryForm = () => {
     const { borderNameList, borderNameApi } = borderStore();
+    const { riceInsertApi } = riceEntryStore();
     const [loader, setLoader] = useState(false);
 
     useEffect(() => {
@@ -15,14 +20,49 @@ const RiceEntryForm = () => {
         })();
     }, [borderNameApi]);
 
-    const handleSubmit = async (e) =>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const borderName = e.target.borderName.value;
         const totalPot = e.target.totalPot.value;
         const payload = {
             borderName,
             totalPot
+        };
+
+        if (!borderName) {
+            toast.error("Please select a border")
+        } else if (!totalPot) {
+            toast.error("Please enter a total pot")
+        } else {
+            const resp = await createAlert();
+            if (resp.isConfirmed) {
+                setLoader(true);
+                let res = await riceInsertApi(payload);
+                setLoader(false);
+                if (res) {
+                    Swal.fire({
+                        position: "top-center",
+                        icon: "success",
+                        title: "Rice Pot Entry Successful",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    e.target.reset();
+                } else {
+                    Swal.fire({
+                        position: "top-center",
+                        icon: "error",
+                        title: "Failed to Entry Rice Pot",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    e.target.reset();
+                }
+            }
         }
+
+
+
     }
 
     return (
@@ -33,10 +73,6 @@ const RiceEntryForm = () => {
             <div className="flex items-center justify-center">
                 <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
                     <h2 className="text-2xl font-semibold text-gray-800 mb-4">Rice Pot Form</h2>
-
-                    {/* Loader */}
-                    {loader && <p className="text-center text-blue-500 mb-4">Loading...</p>}
-
                     {/* Border Name Field */}
                     <div className="mb-4">
                         <label htmlFor="borderName" className="block text-gray-700 font-medium mb-2">
@@ -79,6 +115,13 @@ const RiceEntryForm = () => {
                     </button>
                 </form>
             </div>
+            {
+                loader && (
+                    <div>
+                        <SpinnerLoader></SpinnerLoader>
+                    </div>
+                )
+            }
         </div>
     );
 };
