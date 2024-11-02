@@ -110,7 +110,7 @@ const Sidebar = () => {
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Daily Rice Entry</span>
                                     </NavLink>
                                 </li>
-                                
+
                             </ul>
                         )}
                     </li>
@@ -140,7 +140,7 @@ const Sidebar = () => {
                                     </NavLink>
                                 </li>
                                 <li className="mt-2">
-                                <NavLink
+                                    <NavLink
                                         to="/dashboard/mill-calculaton"
                                         className={`${pathname === "/dashboard/mill-calculaton" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
@@ -151,28 +151,28 @@ const Sidebar = () => {
                             </ul>
                         )}
                     </li>
-                    {/* feedback Section */}
+                    {/* bazar Section */}
                     <li>
                         <div
                             className="flex justify-between items-center cursor-pointer px-3 py-2  rounded-lg"
-                            onClick={() => handleMenuClick('feedback')}
+                            onClick={() => handleMenuClick('bazar')}
                         >
                             <div className="flex items-center">
                                 <MdOutlineManageSearch className='text-xl' />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Feedback</span>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Daily Bazar</span>
                             </div>
-                            {activeMenu === 'feedback' ? <MdExpandLess /> : <MdExpandMore />}
+                            {activeMenu === 'bazar' ? <MdExpandLess /> : <MdExpandMore />}
                         </div>
 
-                        {activeMenu === 'feedback' && (
-                            <ul className="pl-6">
+                        {activeMenu === 'bazar' && (
+                            <ul className="pl-6 my-3 ">
                                 <li>
                                     <NavLink
-                                        to="/dashboard/feedback-create"
-                                        className={`${pathname === "/dashboard/feedback-create" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
+                                        to="/dashboard/bazar-insert"
+                                        className={`${pathname === "/dashboard/bazar-insert" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>Create Feedback</span>
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Daily Bazar Insert</span>
                                     </NavLink>
                                 </li>
                                 <li className="mt-2">

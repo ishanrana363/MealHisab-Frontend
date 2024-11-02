@@ -12,6 +12,7 @@ import DailyRiceEntryFormPage from './../pages/rice-page/daily-rice-entry/DailyR
 import DailyRiceCalculationPage from './../pages/rice-page/daily-rice-entry/DailyRiceCalculationPage';
 import VegetableEntryFormPage from './../pages/vegetable/VegetableEntryFormPage';
 import TotalMillCalculationPage from './../pages/vegetable/TotalMillCalculationPage';
+import InsertBazarFormPage from "../pages/bazar-page/InsertBazarFormPage";
 
 
 export const router = createBrowserRouter([
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
             {
                 path:"mill-calculaton",
                 element:<TotalMillCalculationPage></TotalMillCalculationPage>
+            },
+            {
+                path : "bazar-insert",
+                element : <InsertBazarFormPage></InsertBazarFormPage>,
             }
         ]
     }
