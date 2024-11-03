@@ -16,6 +16,7 @@ import InsertBazarFormPage from "../pages/bazar-page/InsertBazarFormPage";
 import TotalCalculationBazarForm from "../pages/bazar-page/TotalCalculationBazarForm";
 import BazarListPage from "../pages/bazar-page/BazarListPage";
 import EntryMoneyFormPage from './../pages/money-page/EntryMoneyFormPage';
+import MoneyCalculationFormPage from "../pages/money-page/MoneyCalculationFormPage";
 
 
 export const router = createBrowserRouter([
@@ -86,6 +87,10 @@ export const router = createBrowserRouter([
             {
                 path : "entry-money",
                 element : <EntryMoneyFormPage></EntryMoneyFormPage>
+            },
+            {
+                path : "money-calculations",
+                element : <MoneyCalculationFormPage></MoneyCalculationFormPage>
             }
         ]
     }
