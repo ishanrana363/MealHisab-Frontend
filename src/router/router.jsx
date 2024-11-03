@@ -17,6 +17,8 @@ import TotalCalculationBazarForm from "../pages/bazar-page/TotalCalculationBazar
 import BazarListPage from "../pages/bazar-page/BazarListPage";
 import EntryMoneyFormPage from './../pages/money-page/EntryMoneyFormPage';
 import MoneyCalculationFormPage from "../pages/money-page/MoneyCalculationFormPage";
+import ThirtyDaysCalculationFromPage from '../pages/ThirtyDaysCalculationPage/ThirtyDaysMoneyCalculationFromPage';
+import ThirtyDaysMoneyCalculationFromPage from "../pages/ThirtyDaysCalculationPage/ThirtyDaysMoneyCalculationFromPage";
 
 
 export const router = createBrowserRouter([
@@ -91,6 +93,10 @@ export const router = createBrowserRouter([
             {
                 path : "money-calculations",
                 element : <MoneyCalculationFormPage></MoneyCalculationFormPage>
+            },
+            {
+                path : "thiry-days-money-calculation",
+                element : <ThirtyDaysMoneyCalculationFromPage></ThirtyDaysMoneyCalculationFromPage>
             }
         ]
     }

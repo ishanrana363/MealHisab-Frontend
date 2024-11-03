@@ -233,40 +233,40 @@ const Sidebar = () => {
                         )}
                     </li>
 
-                    {/* logo section */}
+                    {/* 30 days section*/}
                     <li>
                         <div
                             className="flex justify-between items-center cursor-pointer px-3 py-2  rounded-lg"
-                            onClick={() => handleMenuClick('logo')}
+                            onClick={() => handleMenuClick('thirty-days')}
                         >
                             <div className="flex items-center">
                                 <MdOutlineManageSearch className='text-xl' />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>logo</span>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Thirty days cal.</span>
                             </div>
-                            {activeMenu === 'logo' ? <MdExpandLess /> : <MdExpandMore />}
+                            {activeMenu === 'thirty-days' ? <MdExpandLess /> : <MdExpandMore />}
                         </div>
 
-                        {activeMenu === 'logo' && (
-                            <ul className="pl-6">
-                                <li>
-                                    <NavLink
-                                        to="/dashboard/logo-upload"
-                                        className={`${pathname === "/dashboard/logo-upload" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
-                                    >
-                                        <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} `}>Logo Upload</span>
-                                    </NavLink>
-                                </li>
-                                <li className="mt-2">
-                                    <NavLink
-                                        to="/dashboard/all-logo"
-                                        className={`${pathname === "/dashboard/all-logo" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
-                                    >
-                                        <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>All Logo</span>
-                                    </NavLink>
-                                </li>
-                            </ul>
+                        {activeMenu === 'thirty-days' && (
+                            <ul className="pl-6 my-3 ">
+                            <li>
+                                <NavLink
+                                    to="/dashboard/thiry-days-money-calculation"
+                                    className={`${pathname === "/dashboard/thiry-days-money-calculation" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
+                                >
+                                    <MdAddCircleOutline className='text-xl' />
+                                    <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}> Money Calculation </span>
+                                </NavLink>
+                            </li>
+                            <li className="mt-2">
+                                <NavLink
+                                    to="/dashboard/thiry-days-rice-calculation"
+                                    className={`${pathname === "/dashboard/thiry-days-rice-calculation" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
+                                >
+                                    <MdAddCircleOutline className='text-xl' />
+                                    <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Rice Calculation </span>
+                                </NavLink>
+                            </li>
+                        </ul>
                         )}
                     </li>
                 </ul>
