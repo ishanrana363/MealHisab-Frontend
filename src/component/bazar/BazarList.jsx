@@ -136,3 +136,4 @@ const BazarList = () => {
 }
 
 export default BazarList
+          

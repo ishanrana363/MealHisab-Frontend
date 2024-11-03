@@ -15,6 +15,7 @@ import TotalMillCalculationPage from './../pages/vegetable/TotalMillCalculationP
 import InsertBazarFormPage from "../pages/bazar-page/InsertBazarFormPage";
 import TotalCalculationBazarForm from "../pages/bazar-page/TotalCalculationBazarForm";
 import BazarListPage from "../pages/bazar-page/BazarListPage";
+import EntryMoneyFormPage from './../pages/money-page/EntryMoneyFormPage';
 
 
 export const router = createBrowserRouter([
@@ -81,6 +82,10 @@ export const router = createBrowserRouter([
             {
                 path : "calculation-bazar",
                 element : <BazarListPage></BazarListPage>,
+            },
+            {
+                path : "entry-money",
+                element : <EntryMoneyFormPage></EntryMoneyFormPage>
             }
         ]
     }

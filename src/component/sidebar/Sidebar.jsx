@@ -196,28 +196,28 @@ const Sidebar = () => {
                             </ul>
                         )}
                     </li>
-                    {/* blog Section */}
+                    {/* money Section */}
                     <li>
                         <div
                             className="flex justify-between items-center cursor-pointer px-3 py-2  rounded-lg"
-                            onClick={() => handleMenuClick('blog')}
+                            onClick={() => handleMenuClick('money')}
                         >
                             <div className="flex items-center">
                                 <MdOutlineManageSearch className='text-xl' />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Blog</span>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Money</span>
                             </div>
-                            {activeMenu === 'blog' ? <MdExpandLess /> : <MdExpandMore />}
+                            {activeMenu === 'money' ? <MdExpandLess /> : <MdExpandMore />}
                         </div>
 
-                        {activeMenu === 'blog' && (
-                            <ul className="pl-6">
+                        {activeMenu === 'money' && (
+                            <ul className="pl-6 my-3 ">
                                 <li>
                                     <NavLink
-                                        to="/dashboard/blog-create"
-                                        className={`${pathname === "/dashboard/blog-create" ? `bg-[#FF9100] text-[black] ` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
+                                        to="/dashboard/entry-money"
+                                        className={`${pathname === "/dashboard/entry-money" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'}`}>Create Blog</span>
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}> Entry Money </span>
                                     </NavLink>
                                 </li>
                                 <li className="mt-2">
