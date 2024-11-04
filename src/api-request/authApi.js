@@ -1,10 +1,10 @@
 import axios from "axios"
+import useAxiosPublic from './../hook/UseAxiosPublic';
 
-const baseUrl = `http://match-mill-hisab.vercel.app/api/v1`
-
+const useAxios = useAxiosPublic()
 
 export const registrationApi = async (payload)=>{
-    let res = await axios.post(`${baseUrl}/registration`,payload);
+    let res = await useAxios.post(`/registration`,payload);
     if(res.data.status === "success" ){
         return res.data.status;
     }else{
@@ -13,7 +13,7 @@ export const registrationApi = async (payload)=>{
 };
 
 export const loginApi = async (payload)=>{
-    let res = await axios.post(`${baseUrl}/login`,payload);
+    let res = await useAxios.post(`/login`,payload);
     if(res.data.status === "success" ){
         localStorage.setItem("token",res.data.token);
         console.log(res)
