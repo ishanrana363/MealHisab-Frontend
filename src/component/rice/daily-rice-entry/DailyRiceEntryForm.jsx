@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
@@ -66,7 +66,7 @@ const DailyRiceEntryForm = () => {
         }
     };
 
-   
+
 
     return (
         <div className='my-2' >
@@ -117,7 +117,7 @@ const DailyRiceEntryForm = () => {
                     {/* Date Picker */}
                     <div className="mb-4">
                         <label htmlFor="entry_date" className="block text-gray-700 font-medium mb-2">
-                        Entry Date
+                            Entry Date
                         </label>
                         <input
                             type="date"
