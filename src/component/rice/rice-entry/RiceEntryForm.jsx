@@ -105,7 +105,7 @@ const RiceEntryForm = () => {
                             Total Rice Pot
                         </label>
                         <input
-                            type="number"
+                            type="text"
                             id="totalRicePot"
                             name="totalPot"
                             placeholder="Enter Total Rice Pot"

@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import borderStore from '../../api-request/borderApi';
 import toast from 'react-hot-toast';
+import moneyStore from '../../api-request/moneyApi';
+import SpinnerLoader from './../loader/SpinnerLoader';
+import ThirtyDaysMoneyCalculationTable from './ThirtyDaysMoneyCalculationTable';
 
 const ThirtyDaysMoneyCalculationForm = () => {
   const { borderNameApi, borderNameList } = borderStore();
+  const {total30DaysOfApi,totalMill,takaDisa,takaPaba,takaDayarDate,millKayarDate,millKhorajTka} = moneyStore();
   const [show, setShow] = useState(false);
   const [loader, setLoader] = useState(false);
 
@@ -48,7 +52,7 @@ const ThirtyDaysMoneyCalculationForm = () => {
 
     try {
       setLoader(true);
-      // await totalMoneyCalculationApi(payload);
+      await total30DaysOfApi(payload);
       setShow(true);
     } catch (error) {
       toast.error("Failed to fetch data");
@@ -144,17 +148,20 @@ const ThirtyDaysMoneyCalculationForm = () => {
         </form>
 
         {/* Show the Calculation Table if data is available */}
-        {/* {show && (
-          <MoneryCalculationTable 
-            totalMoneyCalculation={totalMoneyCalculation} borderMoneyDataList={borderMoneyDataList} />
-        )} */}
+        {show && (
+          <ThirtyDaysMoneyCalculationTable 
+          millKayarDate={millKayarDate} takaDayarDate={takaDayarDate} takaPaba= {takaPaba} takaDisa = {takaDisa} totalMill = {totalMill} millKhorajTka= {millKhorajTka} />
+        )} 
 
         {/* Loader for data fetching */}
-        {/* {loader && (
-          <div className="text-center mt-4">
-            <SpinnerLoader />
-          </div>
-        )} */}
+         {
+           loader && (
+             <div className="text-center mt-4">
+               <SpinnerLoader />
+             </div>
+           )
+         }
+    
       </div>
     </div>
     </div>
