@@ -39,7 +39,7 @@ const Sidebar = () => {
                         >
                             <div className="flex items-center">
                                 <MdOutlineManageSearch className='text-xl' />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Border</span>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Border Info.</span>
                             </div>
                             {activeMenu === 'border' ? <MdExpandLess /> : <MdExpandMore />}
                         </div>
@@ -52,7 +52,7 @@ const Sidebar = () => {
                                         className={`${pathname === "/dashboard/border-create" ? ` text-textColor bg-[#FF9100] ` : `bg-[#D5ED9F] text-[black]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Border Create</span>
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Upload Border Info</span>
                                     </NavLink>
                                 </li>
                                 <li className="mt-2">
@@ -61,7 +61,7 @@ const Sidebar = () => {
                                         className={`${pathname === "/dashboard/all-border" ? `bg-[#FF9100]  text-[black]` : `bg-[#D5ED9F] text-[black]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>All Border</span>
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>All Border Info</span>
                                     </NavLink>
                                 </li>
                             </ul>
@@ -76,7 +76,7 @@ const Sidebar = () => {
                         >
                             <div className="flex items-center">
                                 <MdOutlineManageSearch className='text-xl' />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Rice</span>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Rice Info.</span>
                             </div>
                             {activeMenu === 'rice-entry' ? <MdExpandLess /> : <MdExpandMore />}
                         </div>
@@ -107,7 +107,7 @@ const Sidebar = () => {
                                         className={`${pathname === "/dashboard/daily-rice-entry-form" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Daily Rice Entry</span>
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Daily Rice Upload</span>
                                     </NavLink>
                                 </li>
 
@@ -123,7 +123,7 @@ const Sidebar = () => {
                         >
                             <div className="flex items-center">
                                 <MdOutlineManageSearch className='text-xl' />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 text-sm font-bold text-white `}>Daily Mill</span>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 text-sm font-bold text-white `}>Mill Info.</span>
                             </div>
                             {activeMenu === 'vegetable' ? <MdExpandLess /> : <MdExpandMore />}
                         </div>
@@ -136,7 +136,7 @@ const Sidebar = () => {
                                         className={`${pathname === "/dashboard/vegetable-entry" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Daily Mill Entry </span>
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Daily Mill Upload </span>
                                     </NavLink>
                                 </li>
                                 <li className="mt-2">
@@ -145,7 +145,7 @@ const Sidebar = () => {
                                         className={`${pathname === "/dashboard/mill-calculaton" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Daily Mill Calculation</span>
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Mill Calculation</span>
                                     </NavLink>
                                 </li>
                             </ul>
@@ -159,7 +159,7 @@ const Sidebar = () => {
                         >
                             <div className="flex items-center">
                                 <MdOutlineManageSearch className='text-xl' />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Daily Bazar</span>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Bazar Info. </span>
                             </div>
                             {activeMenu === 'bazar' ? <MdExpandLess /> : <MdExpandMore />}
                         </div>
@@ -172,7 +172,7 @@ const Sidebar = () => {
                                         className={`${pathname === "/dashboard/bazar-insert" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Daily Bazar Insert</span>
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Daily Bazar Upload</span>
                                     </NavLink>
                                 </li>
                                 <li className="mt-2">
@@ -181,7 +181,7 @@ const Sidebar = () => {
                                         className={`${pathname === "/dashboard/calculation-bazar-border" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
-                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Daily Bazar Cal Border </span>
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Bazar Cal. Border </span>
                                     </NavLink>
                                 </li>
                                 <li className="mt-2">
@@ -204,7 +204,7 @@ const Sidebar = () => {
                         >
                             <div className="flex items-center">
                                 <MdOutlineManageSearch className='text-xl' />
-                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Money</span>
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Money Info. </span>
                             </div>
                             {activeMenu === 'money' ? <MdExpandLess /> : <MdExpandMore />}
                         </div>

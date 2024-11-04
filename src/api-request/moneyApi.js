@@ -30,6 +30,7 @@ const moneyStore = create((set) => ({
     millKhorajTka : [],
     takaDayarDate: [],
     millKayarDate: [],
+    qrImg : [],
     total30DaysOfApi: async (payload) => {
         let res = await axiosPublic.post('/money-calculation-30days', payload);
         if (res.data.status === "success") {
@@ -39,6 +40,7 @@ const moneyStore = create((set) => ({
             set({ takaDayarDate: res.data.takaDayarDate });
             set({ millKayarDate: res.data.millKayarDate });
             set({ millKhorajTka: res.data.millKhorajTka });
+            set({ qrImg: res.data.qrImg });
             return true;
         }else{
             return false;

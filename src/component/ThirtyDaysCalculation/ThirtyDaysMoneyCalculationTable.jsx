@@ -1,13 +1,21 @@
 /* eslint-disable react/prop-types */
 import moment from 'moment';
 
-const ThirtyDaysMoneyCalculationTable = ({ millKayarDate, takaDayarDate, takaPaba, takaDisa, totalMill, millKhorajTka }) => {
-  
+const ThirtyDaysMoneyCalculationTable = ({
+  millKayarDate,
+  takaDayarDate,
+  takaPaba,
+  takaDisa,
+  totalMill,
+  millKhorajTka,
+  qrImg
+}) => {
+
   // Function to download table data as CSV
   const downloadCSV = () => {
     // Table headers
     const headers = ['#', 'Name', 'Image URL', 'Money', 'Date'];
-    
+
     // Table rows
     const rows = takaDayarDate.map((item, i) => [
       i + 1,
@@ -20,7 +28,7 @@ const ThirtyDaysMoneyCalculationTable = ({ millKayarDate, takaDayarDate, takaPab
     // Combine headers and rows into CSV format
     const csvContent = [headers, ...rows].map(row => row.join(',')).join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    
+
     // Create a download link
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
@@ -49,8 +57,8 @@ const ThirtyDaysMoneyCalculationTable = ({ millKayarDate, takaDayarDate, takaPab
                 <td className="py-2 px-4 border-b border-gray-300">{item?.borderData?.name || 'Unknown'}</td>
                 <td className="py-2 px-4 border-b border-gray-300">
                   <img
-                    src={item?.borderData?.img || '/default-image.jpg'} 
-                    alt={item?.borderData?.name ? `${item.borderData.name} Image` : 'Border Image'}
+                    src={item?.borderData?.img || '/default-image.jpg'}
+                    alt={item?.borderData?.name ? `${item.borderData.name} Image` : 'No image available'}
                     className="w-12 h-12 rounded-full block mx-auto"
                   />
                 </td>
@@ -62,23 +70,30 @@ const ThirtyDaysMoneyCalculationTable = ({ millKayarDate, takaDayarDate, takaPab
             ))}
           </tbody>
         </table>
-        <div className="mt-4 text-center">
-          {takaDisa !== undefined && <p>মোট টাকা দিচ্ছেন: {takaDisa} টাকা</p>}
-          {totalMill !== undefined && <p>টোটাল মিল খাইচ্ছেন: {totalMill} টা</p>}
-          {millKhorajTka !== undefined && <p>মিল খরছ হইচ্ছে: {millKhorajTka} টাকা</p>}
-          {takaPaba !== undefined && (
-            <p>
-              {takaPaba > 0 ? `টাকা পাবেন: ${takaPaba} টাকা` : `আপনার কাচ্ছে পাবে: ${Math.abs(takaPaba)} টাকা`}
-            </p>
-          )}
+
+        {/* Footer section for summary data */}
+        <div className="mt-4 flex justify-between items-center space-y-2">
+          <div>
+            {takaDisa !== undefined && <p>মোট টাকা দিচ্ছেন : {takaDisa} টাকা</p>}
+            {totalMill !== undefined && <p>টোটাল মিল খাইচ্ছেন : {totalMill} টা</p>}
+            {millKhorajTka !== undefined && <p>মিল খরছ হইচ্ছে : {millKhorajTka} টাকা</p>}
+            {takaPaba !== undefined && (
+              <p>
+                {takaPaba > 0 ? `টাকা পাবেন : ${takaPaba} টাকা` : `আপনার কাচ্ছে পাবে : ${Math.abs(takaPaba)} টাকা`}
+              </p>
+            )}
+          </div>
+          <div>
+            <img src={qrImg} alt="" />
+          </div>
         </div>
-        <div className="flex justify-end">
-          <p className="text-center">Issue Date: {new Date().toLocaleString()}</p>
+
+        <div className="mt-4 text-right">
+          <p>Issue Date: {new Date().toLocaleString()}</p>
         </div>
-      </div>
-      <div>
+
         {/* Download CSV Button */}
-        <button onClick={downloadCSV} className="btn block mx-auto mt-4">
+        <button onClick={downloadCSV} className="bg-blue-500 text-white px-4 py-2 mt-4 rounded shadow hover:bg-blue-600 block mx-auto">
           Download Table Data
         </button>
       </div>

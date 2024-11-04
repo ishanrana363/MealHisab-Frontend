@@ -24,18 +24,18 @@ const DailyRiceEntryForm = () => {
         e.preventDefault();
         const borderId = e.target.borderId.value;
         const pot = e.target.pot.value;
-        const entry_date = e.target.entry_date.value;
+        const date = e.target.date.value;
         const payload = {
             borderId,
             pot,
-            entry_date,
+            date,
         };
 
         if (!borderId) {
             toast.error("Please select a border");
         } else if (!pot) {
             toast.error("Please enter a total pot");
-        } else if (!entry_date) {
+        } else if (!date) {
             toast.error("Please select a date");
         } else {
             const resp = await createAlert();
@@ -122,7 +122,7 @@ const DailyRiceEntryForm = () => {
                         <input
                             type="date"
                             id="entry_date"
-                            name="entry_date"
+                            name="date"
                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                         />
                     </div>
