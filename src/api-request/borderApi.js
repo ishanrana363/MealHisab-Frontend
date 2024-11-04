@@ -2,7 +2,7 @@ import axios from "axios";
 import { create } from "zustand";
 
 
-const baseUrl = `http://match-mill-hisab.vercel.app/api/v1`;
+const baseUrl = `http://match-mill-hisab.vercel.app/api/v1/`;
 
 const config = {
     headers: {
