@@ -13,7 +13,7 @@ export const registrationApi = async (payload)=>{
 };
 
 export const loginApi = async (payload)=>{
-    let res = await axios.post(`/https://match-mill-hisab.vercel.app/api/v1/login`,payload);
+    let res = await axios.post(`https://match-mill-hisab.vercel.app/api/v1/login`,payload);
     if(res.data.status === "success" ){
         localStorage.setItem("token",res.data.token);
         console.log(res)
