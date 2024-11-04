@@ -8,7 +8,7 @@ import ThirtyDaysRiceCalculationTable from './ThirtyDaysRiceCalculationTable';
 
 const ThirtyDaysRiceCalculationForm = () => {
   const { borderNameApi, borderNameList } = borderStore();
-  const {borderData,chalPabane,totalGivenRiceOneBorder,totalEatenRiceOneBorder,totalRiceOneBorderApi,millQrImg } = moneyStore();
+  const {borderDataList,chalPabane,totalGivenRiceOneBorder,totalEatenRiceOneBorder,totalRiceOneBorderApi,millQrImg } = moneyStore();
   const [show, setShow] = useState(false);
   const [loader, setLoader] = useState(false);
 
@@ -151,7 +151,7 @@ const ThirtyDaysRiceCalculationForm = () => {
 
             {/* Show the Calculation Table if data is available */}
             {show && (
-              <ThirtyDaysRiceCalculationTable borderData = {borderData} chalPabane = {chalPabane} millQrImg = {millQrImg}
+              <ThirtyDaysRiceCalculationTable borderDataList = {borderDataList} chalPabane = {chalPabane} millQrImg = {millQrImg}
               totalGivenRiceOneBorder = {totalGivenRiceOneBorder} totalEatenRiceOneBorder = {totalEatenRiceOneBorder} />
             )}
 

@@ -26,7 +26,6 @@ const millStore = create((set) => ({
             set({ totalCalculationMoney: parseFloat(res.data.data) });
             set({ totalMillData: parseFloat(res.data.dataThree) });
             set({ borderMillDataList: res.data.dataTow });
-            set({ millQrImg : res.data.qrImg}); 
 
             return;
         } else {

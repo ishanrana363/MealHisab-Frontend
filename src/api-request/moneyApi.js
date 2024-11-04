@@ -51,14 +51,15 @@ const moneyStore = create((set) => ({
     totalGivenRiceOneBorder : [],
     millQrImg : [],
     chalPabane : [],
-    borderData : [],
+    borderDataList : [],
     totalRiceOneBorderApi: async (payload) => {
         let res = await axiosPublic.post('/rice-calculation-30days', payload);
         if(res.data.status === 'success'){
             set({ totalEatenRiceOneBorder: parseFloat(res.data.totalEatenRiceOneBorder) });
             set({ totalGivenRiceOneBorder: parseFloat(res.data.totalGivenRiceOneBorder) });
             set({ chalPabane: parseFloat(res.data.chalPabane) });
-            set({ borderData: res.data.borderData });
+            set({ borderDataList: res.data.borderDataList});
+            console.log(res.data.borderDataList)
             set({millQrImg : res.data.qrImg });
             return true;
         }

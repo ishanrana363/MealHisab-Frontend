@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import moment from 'moment';
 
-const ThirtyDaysRiceCalculationTable = ({totalEatenRiceOneBorder,totalGivenRiceOneBorder,borderData,chalPabane,millQrImg}) => {
+const ThirtyDaysRiceCalculationTable = ({totalEatenRiceOneBorder,totalGivenRiceOneBorder,borderDataList,chalPabane,millQrImg}) => {
   
   return (
     <div>
@@ -14,15 +14,15 @@ const ThirtyDaysRiceCalculationTable = ({totalEatenRiceOneBorder,totalGivenRiceO
                 <th className="py-2 px-4 border-b border-gray-300">#</th>
                 <th className="py-2 px-4 border-b border-gray-300">Name</th>
                 <th className="py-2 px-4 border-b border-gray-300">Image</th>
-                <th className="py-2 px-4 border-b border-gray-300">Money</th>
+                <th className="py-2 px-4 border-b border-gray-300">Pot</th>
                 <th className="py-2 px-4 border-b border-gray-300">Date</th>
               </tr>
             </thead>
             <tbody>
-              {borderData && borderData.map((item, i) => (
+              {borderDataList && borderDataList.map((item, i) => (
                 <tr key={i} className="hover:bg-gray-100 text-center">
                   <td className="py-2 px-4 border-b border-gray-300">{i + 1}</td>
-                  <td className="py-2 px-4 border-b border-gray-300">{item?.borderData?.name || 'Unknown'}</td>
+                  <td className="py-2 px-4 border-b border-gray-300">{item?.borderData?.name}</td>
                   <td className="py-2 px-4 border-b border-gray-300">
                     <img
                       src={item?.borderData?.img || '/default-image.jpg'}
@@ -30,7 +30,7 @@ const ThirtyDaysRiceCalculationTable = ({totalEatenRiceOneBorder,totalGivenRiceO
                       className="w-12 h-12 rounded-full block mx-auto"
                     />
                   </td>
-                  <td className="py-2 px-4 border-b border-gray-300">{item?.totalMoney || 0}</td>
+                  <td className="py-2 px-4 border-b border-gray-300">{item.pot}</td>
                   <td className="py-2 px-4 border-b border-gray-300">
                     {item?.date ? moment(item.date).format('MMMM Do YYYY') : 'N/A'}
                   </td>
