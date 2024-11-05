@@ -24,23 +24,21 @@ const moneyStore = create((set) => ({
         }
     },
 
-    totalMill: [],
-    takaDisa: [],
-    takaPaba: [],
-    millKhorajTka : [],
-    takaDayarDate: [],
-    millKayarDate: [],
-    qrImg : [],
-    total30DaysOfApi: async (payload) => {
+    totalMillEatenOneBorder: [],
+    totalMillCost: [],
+    totalMoneyOneBorderGiven: [],
+    takaPaba : [],
+    millBorderDataList: [],
+    qrImageUrl: [],
+    total30DaysMillCalculationApi: async (payload) => {
         let res = await axiosPublic.post('/money-calculation-30days', payload);
         if (res.data.status === "success") {
-            set({ totalMill: parseFloat(res.data.totalMill) });
-            set({ takaDisa: parseFloat(res.data.takaDisa) });
-            set({ takaPaba: parseFloat(res.data.takaPaba) });
-            set({ takaDayarDate: res.data.takaDayarDate });
-            set({ millKayarDate: res.data.millKayarDate });
-            set({ millKhorajTka: res.data.millKhorajTka });
-            set({ qrImg: res.data.qrImg });
+            set({totalMillEatenOneBorder:res.data.totalMillEatenOneBorder})
+            set({ totalMillCost: res.data.totalMillCost });
+            set({ totalMoneyOneBorderGiven: res.data.totalMoneyOneBorderGiven});
+            set({ takaPaba: res.data.takaPaba });
+            set({ millBorderDataList: res.data.data });
+            set({qrImageUrl : res.data.qrImageUrl})
             return true;
         }else{
             return false;

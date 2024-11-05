@@ -8,7 +8,7 @@ import ThirtyDaysMoneyCalculationTable from './ThirtyDaysMoneyCalculationTable';
 
 const ThirtyDaysMoneyCalculationForm = () => {
   const { borderNameApi, borderNameList } = borderStore();
-  const { total30DaysOfApi, totalMill, takaDisa, qrImg, takaPaba, takaDayarDate, millKayarDate, millKhorajTka } = moneyStore();
+  const {totalMillEatenOneBorder,totalMillCost,totalMoneyOneBorderGiven,takaPaba,millBorderDataList,qrImageUrl,total30DaysMillCalculationApi } = moneyStore();
   const [show, setShow] = useState(false);
   const [loader, setLoader] = useState(false);
 
@@ -52,7 +52,7 @@ const ThirtyDaysMoneyCalculationForm = () => {
 
     try {
       setLoader(true);
-      await total30DaysOfApi(payload);
+      await total30DaysMillCalculationApi(payload);
       setShow(true);
     } catch (error) {
       toast.error("Failed to fetch data");
@@ -150,8 +150,14 @@ const ThirtyDaysMoneyCalculationForm = () => {
           {/* Show the Calculation Table if data is available */}
           {show && (
             <ThirtyDaysMoneyCalculationTable
-            qrImg = {qrImg}
-              millKayarDate={millKayarDate} takaDayarDate={takaDayarDate} takaPaba={takaPaba} takaDisa={takaDisa} totalMill={totalMill} millKhorajTka={millKhorajTka} />
+            borderDataList={millBorderDataList}
+            totalMillEatenOneBorder={totalMillEatenOneBorder}
+            totalMillCost={totalMillCost}
+            totalMoneyOneBorderGiven={totalMoneyOneBorderGiven}
+            takaPaba={takaPaba}
+            qrImageUrl={qrImageUrl}
+            
+            />
           )}
 
           {/* Loader for data fetching */}
