@@ -16,10 +16,8 @@ export const loginApi = async (payload)=>{
     let res = await axiosPublic.post(`/login`,payload);
     if(res.data.status === "success" ){
         localStorage.setItem("token",res.data.token);
-        console.log(res)
         return res.data.status;
     }else{
-        console.log(res.data.status);
         return res.data.message;
     }
 };

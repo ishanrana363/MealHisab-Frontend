@@ -19,6 +19,9 @@ import EntryMoneyFormPage from './../pages/money-page/EntryMoneyFormPage';
 import MoneyCalculationFormPage from "../pages/money-page/MoneyCalculationFormPage";
 import ThirtyDaysMoneyCalculationFromPage from "../pages/ThirtyDaysCalculationPage/ThirtyDaysMoneyCalculationFromPage";
 import ThirtyDaysRiceCalculationPage from './../pages/ThirtyDaysCalculationPage/ThirtyDaysRiceCalculationPage';
+import UserProfilePage from './../pages/profile-page/UserProfilePage';
+import ProfileUpdate from './../component/profile/ProfileUpdate';
+import UpdateProfilePage from './../pages/profile-page/UpdateProfilePage';
 
 
 export const router = createBrowserRouter([
@@ -101,6 +104,14 @@ export const router = createBrowserRouter([
             {
                 path : "thiry-days-rice-calculation",
                 element : <ThirtyDaysRiceCalculationPage></ThirtyDaysRiceCalculationPage>
+            },
+            {
+                path : "profile",
+                element : <UserProfilePage></UserProfilePage>
+            },
+            {
+                path : "profile-update",
+                element : <UpdateProfilePage></UpdateProfilePage>
             }
         ]
     }
