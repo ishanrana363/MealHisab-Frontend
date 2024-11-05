@@ -8,7 +8,7 @@ const axiosPublic = useAxiosPublic();
 
 const millStore = create((set) => ({
     millCreateApi: async (payload) => {
-        const res = await axiosPublic.post('/insert-vegetable-entry', payload);
+        const res = await axiosPublic.post('/mill-upload', payload);
         if (res.data.status === "success") {
             return true;
         } else {
