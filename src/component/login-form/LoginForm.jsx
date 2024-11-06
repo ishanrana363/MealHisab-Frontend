@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"; // Importing eye icons
-import { Link, useNavigate } from "react-router-dom";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { Link } from "react-router-dom";
 import { loginApi } from "../../api-request/authApi";
 import Swal from "sweetalert2";
 import SpinnerLoader from "../loader/SpinnerLoader";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [loader,setLoader] = useState(false);
-  const navigate = useNavigate();
+  const [loader, setLoader] = useState(false);
+
   const togglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
@@ -19,38 +19,38 @@ const LoginForm = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    const payload = {
-      email,
-      password,
-    };
-
-    console.log(email, password)
+    const payload = { email, password };
 
     if (!email) {
-      toast.error("Please enter a valid email")
+      toast.error("Please enter a valid email");
     } else if (!password) {
-      toast.error("Please enter a valid password")
+      toast.error("Please enter a valid password");
     } else {
       setLoader(true);
-      const res = await loginApi(payload);
-      setLoader(false);
-      if (res) {
-        navigate("/dashboard")
-        Swal.fire({
-          position: "top-center",
-          icon: "success",
-          title: "Login successfully",
-          showConfirmButton: false,
-          timer: 1500
-        });
-      } else {
-        Swal.fire({
-          position: "top-center",
-          icon: "failure",
-          title: "Login fail",
-          showConfirmButton: false,
-          timer: 1500
-        });
+      try {
+        const res = await loginApi(payload);
+        setLoader(false);
+        if (res) {
+          window.location.href = "/dashboard";
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Login successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else {
+          Swal.fire({
+            position: "top-center",
+            icon: "error",
+            title: "Login failed",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      } catch (error) {
+        setLoader(false);
+        toast.error("An error occurred. Please try again.");
       }
     }
   };
@@ -61,8 +61,13 @@ const LoginForm = () => {
         <title>MealHisab | Login</title>
       </Helmet>
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <form onSubmit={handleSubmit} className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
-          <h2 className="text-2xl font-semibold text-center text-gray-800">Login</h2>
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg"
+        >
+          <h2 className="text-2xl font-semibold text-center text-gray-800">
+            Login
+          </h2>
 
           {/* Email Field */}
           <div>
@@ -117,21 +122,21 @@ const LoginForm = () => {
               Forgot Password?
             </a>
             <p className="mt-2 text-sm text-gray-600">
-              You have no account?{" "}
+              Don't have an account?{" "}
               <Link to="/registration" className="text-green-600 hover:underline">
-                Please register.
+                Register here.
               </Link>
             </p>
           </div>
         </form>
       </div>
-      {
-        loader && (
-          <div>
-            <SpinnerLoader></SpinnerLoader>
-          </div>
-        )
-      }
+
+      {/* Loader Overlay */}
+      {loader && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <SpinnerLoader />
+        </div>
+      )}
     </div>
   );
 };

@@ -237,16 +237,16 @@ const Sidebar = () => {
                     <li>
                         <div
                             className="flex justify-between items-center cursor-pointer px-3 py-2  rounded-lg"
-                            onClick={() => handleMenuClick('thirty-days')}
+                            onClick={() => handleMenuClick('calculation')}
                         >
                             <div className="flex items-center">
                                 <MdOutlineManageSearch className='text-xl' />
                                 <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Thirty days cal.</span>
                             </div>
-                            {activeMenu === 'thirty-days' ? <MdExpandLess /> : <MdExpandMore />}
+                            {activeMenu === 'calculation' ? <MdExpandLess /> : <MdExpandMore />}
                         </div>
 
-                        {activeMenu === 'thirty-days' && (
+                        {activeMenu === 'calculation' && (
                             <ul className="pl-6 my-3 ">
                             <li>
                                 <NavLink
@@ -266,6 +266,33 @@ const Sidebar = () => {
                                     <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Rice Calculation </span>
                                 </NavLink>
                             </li>
+                        </ul>
+                        )}
+                    </li>
+                    <li>
+                        <div
+                            className="flex justify-between items-center cursor-pointer px-3 py-2  rounded-lg"
+                            onClick={() => handleMenuClick('former-border')}
+                        >
+                            <div className="flex items-center">
+                                <MdOutlineManageSearch className='text-xl' />
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>Former Border</span>
+                            </div>
+                            {activeMenu === 'former-border' ? <MdExpandLess /> : <MdExpandMore />}
+                        </div>
+
+                        {activeMenu === 'former-border' && (
+                            <ul className="pl-6 my-3 ">
+                            <li>
+                                <NavLink
+                                    to="/dashboard/former-border-list"
+                                    className={`${pathname === "/dashboard/former-border-list" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
+                                >
+                                    <MdAddCircleOutline className='text-xl' />
+                                    <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}> Former Border List </span>
+                                </NavLink>
+                            </li>
+                            
                         </ul>
                         )}
                     </li>

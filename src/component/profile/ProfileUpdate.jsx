@@ -45,7 +45,9 @@ const ProfileUpdate = () => {
 
     const resp = await updateAlert();
     if (resp.isConfirmed) {
+      setLoader(true);
       const res = await userProfileUpdateApi(payload);
+      setLoader(false);
       if (res) {
         await userProfileDataApi();
         Swal.fire({

@@ -21,6 +21,11 @@ useEffect(()=>{
         setToggle(!toggle);
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        window.location.href = "/";
+    }
+
 
 
     return (
@@ -64,7 +69,7 @@ useEffect(()=>{
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link className="flex justify-center text-lg font-bold font-mono text-black " to={""}>
+                                    <Link onClick={handleLogout} className="flex justify-center text-lg font-bold font-mono text-black " to={""}>
                                         Logout
                                     </Link>
                                 </li>

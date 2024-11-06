@@ -1,3 +1,4 @@
+// src/router/router.jsx
 import { createBrowserRouter } from "react-router-dom";
 import LoginFormPage from "../pages/login-form-page/LoginFormPage";
 import RegistrationFormPage from "../pages/registration-form-page/RegistrationFormPage";
@@ -20,99 +21,200 @@ import MoneyCalculationFormPage from "../pages/money-page/MoneyCalculationFormPa
 import ThirtyDaysMoneyCalculationFromPage from "../pages/ThirtyDaysCalculationPage/ThirtyDaysMoneyCalculationFromPage";
 import ThirtyDaysRiceCalculationPage from './../pages/ThirtyDaysCalculationPage/ThirtyDaysRiceCalculationPage';
 import UserProfilePage from './../pages/profile-page/UserProfilePage';
-import ProfileUpdate from './../component/profile/ProfileUpdate';
 import UpdateProfilePage from './../pages/profile-page/UpdateProfilePage';
+import ProtectedRoute from "../component/protected-route/ProtectedRoute";
+import { getUserRole } from "../utils/getUserRole";
+import ProfileUpdate from "../component/profile/ProfileUpdate";
+import FormerBorderPage from "../pages/formar-border-page/FormerBorderPage";
+import SingleBorderPage from "../pages/formar-border-page/SingleBorderPage";
 
+
+
+const userRole = getUserRole(); // Retrieve the user role from localStorage
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <LoginFormPage></LoginFormPage>
+        element: <LoginFormPage />
     },
     {
         path: "/registration",
-        element: <RegistrationFormPage></RegistrationFormPage>
+        element: <RegistrationFormPage />
     },
     {
         path: "/dashboard",
-        element: <Layout></Layout>,
+        element: <Layout />,
         children: [
             {
                 path: "border-create",
-                element: <BorderCreateFormPage></BorderCreateFormPage>
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <BorderCreateFormPage />
+                    </ProtectedRoute>
+                )
             },
             {
                 path: "all-border",
-                element: <AllBorderListPage></AllBorderListPage>
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <AllBorderListPage />
+                    </ProtectedRoute>
+                )
             },
             {
                 path: "border-update/:id",
-                element: <BorderUpdateFormPage></BorderUpdateFormPage>
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <BorderUpdateFormPage />
+                    </ProtectedRoute>
+                )
             },
             {
-                path : "border-details/:id",
-                element : <BorderDetailsPage></BorderDetailsPage>
+                path: "border-details/:id",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <BorderDetailsPage />
+                    </ProtectedRoute>
+                )
             },
             {
-                path : "rice-entry",
-                element : <RiceEntryFromPage></RiceEntryFromPage>
+                path: "rice-entry",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <RiceEntryFromPage />
+                    </ProtectedRoute>
+                )
             },
             {
-                path : "rice-calculation",
-                element : <RiceCalculationFormPage></RiceCalculationFormPage>
+                path: "rice-calculation",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <RiceCalculationFormPage />
+                    </ProtectedRoute>
+                )
             },
             {
-                path : "daily-rice-entry-form",
-                element : <DailyRiceEntryFormPage></DailyRiceEntryFormPage>
+                path: "daily-rice-entry-form",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <DailyRiceEntryFormPage />
+                    </ProtectedRoute>
+                )
             },
             {
-                path : "daily-rice-calculation",
-                element : <DailyRiceCalculationPage></DailyRiceCalculationPage>
+                path: "daily-rice-calculation",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <DailyRiceCalculationPage />
+                    </ProtectedRoute>
+                )
             },
             {
-                path : "vegetable-entry",
-                element : <VegetableEntryFormPage></VegetableEntryFormPage>
+                path: "vegetable-entry",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <VegetableEntryFormPage />
+                    </ProtectedRoute>
+                )
             },
             {
-                path:"mill-calculaton",
-                element:<TotalMillCalculationPage></TotalMillCalculationPage>
+                path: "mill-calculaton",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <TotalMillCalculationPage />
+                    </ProtectedRoute>
+                )
             },
             {
-                path : "bazar-insert",
-                element : <InsertBazarFormPage></InsertBazarFormPage>,
+                path: "bazar-insert",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <InsertBazarFormPage />
+                    </ProtectedRoute>
+                )
             },
             {
-                path : "calculation-bazar-border",
-                element : <TotalCalculationBazarForm></TotalCalculationBazarForm>
+                path: "calculation-bazar-border",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <TotalCalculationBazarForm />
+                    </ProtectedRoute>
+                )
             },
             {
-                path : "calculation-bazar",
-                element : <BazarListPage></BazarListPage>,
+                path: "calculation-bazar",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <BazarListPage />
+                    </ProtectedRoute>
+                )
             },
             {
-                path : "entry-money",
-                element : <EntryMoneyFormPage></EntryMoneyFormPage>
+                path: "entry-money",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <EntryMoneyFormPage />
+                    </ProtectedRoute>
+                )
             },
             {
-                path : "money-calculations",
-                element : <MoneyCalculationFormPage></MoneyCalculationFormPage>
+                path: "money-calculations",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <MoneyCalculationFormPage />
+                    </ProtectedRoute>
+                )
             },
             {
-                path : "thiry-days-money-calculation",
-                element : <ThirtyDaysMoneyCalculationFromPage></ThirtyDaysMoneyCalculationFromPage>
+                path: "thiry-days-money-calculation",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <ThirtyDaysMoneyCalculationFromPage />
+                    </ProtectedRoute>
+                )
             },
             {
-                path : "thiry-days-rice-calculation",
-                element : <ThirtyDaysRiceCalculationPage></ThirtyDaysRiceCalculationPage>
+                path: "thiry-days-rice-calculation",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <ThirtyDaysRiceCalculationPage />
+                    </ProtectedRoute>
+                )
             },
             {
-                path : "profile",
-                element : <UserProfilePage></UserProfilePage>
+                path: "profile",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <UserProfilePage />
+                    </ProtectedRoute>
+                )
             },
             {
-                path : "profile-update",
-                element : <UpdateProfilePage></UpdateProfilePage>
-            }
+                path: "profile-update",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <ProfileUpdate />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: "former-border-list",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <FormerBorderPage />
+                    </ProtectedRoute>
+                )
+            },
+            
+                {
+                    path: "single/border-details/:id",
+                    element: (
+                        <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                            <SingleBorderPage />
+                        </ProtectedRoute>
+                    )
+                }
+            
         ]
     }
-])
+]);
