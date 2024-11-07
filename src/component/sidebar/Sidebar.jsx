@@ -296,6 +296,33 @@ const Sidebar = () => {
                         </ul>
                         )}
                     </li>
+                    <li>
+                        <div
+                            className="flex justify-between items-center cursor-pointer px-3 py-2  rounded-lg"
+                            onClick={() => handleMenuClick('user-list')}
+                        >
+                            <div className="flex items-center">
+                                <MdOutlineManageSearch className='text-xl' />
+                                <span className={`${isSidebarOpen ? 'block' : 'hidden'} ml-3 font-bold text-white `}>User</span>
+                            </div>
+                            {activeMenu === 'user-list' ? <MdExpandLess /> : <MdExpandMore />}
+                        </div>
+
+                        {activeMenu === 'user-list' && (
+                            <ul className="pl-6 my-3 ">
+                            <li>
+                                <NavLink
+                                    to="/dashboard/user-list"
+                                    className={`${pathname === "/dashboard/user-list" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
+                                >
+                                    <MdAddCircleOutline className='text-xl' />
+                                    <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}> User List </span>
+                                </NavLink>
+                            </li>
+                            
+                        </ul>
+                        )}
+                    </li>
                 </ul>
             </nav>
         </aside>

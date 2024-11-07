@@ -1,6 +1,102 @@
 import React, { useEffect, useState } from 'react';
 import formerBorderStore from '../../api-request/borderStore';
 import { useParams } from 'react-router-dom';
+import { Document, Page, Text, View, StyleSheet, Image, PDFDownloadLink } from '@react-pdf/renderer';
+
+const styles = StyleSheet.create({
+    page: {
+        padding: 20,
+        fontFamily: 'Helvetica',
+    },
+    section: {
+        margin: 10,
+        padding: 10,
+        flexGrow: 1,
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 20,
+        textAlign: 'center',
+    },
+    label: {
+        fontSize: 12,
+        color: '#6B7280', // Tailwind gray-500
+    },
+    text: {
+        fontSize: 14,
+        color: '#1F2937', // Tailwind gray-800
+    },
+    row: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 10,
+    },
+    image: {
+        width: 100,
+        height: 100,
+        borderRadius: '50%',
+        marginBottom: 20,
+    },
+});
+
+const SingleBorderPDF = ({ data }) => (
+    <Document>
+        <Page style={styles.page}>
+            <View style={styles.section}>
+                <Text style={styles.title}>User Information</Text>
+                <View style={{ alignItems: 'center', marginBottom: 20 }}>
+                    <Image src={data.img} style={styles.image} />
+                </View>
+
+                <View style={styles.row}>
+                    <View>
+                        <Text style={styles.label}>Name:</Text>
+                        <Text style={styles.text}>{data.name}</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.label}>Email:</Text>
+                        <Text style={styles.text}>{data.email}</Text>
+                    </View>
+                </View>
+
+                <View style={styles.row}>
+                    <View>
+                        <Text style={styles.label}>Phone:</Text>
+                        <Text style={styles.text}>{data.phone}</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.label}>Date of Birth:</Text>
+                        <Text style={styles.text}>{data.dob}</Text>
+                    </View>
+                </View>
+
+                <View style={styles.row}>
+                    <View>
+                        <Text style={styles.label}>Father's Name:</Text>
+                        <Text style={styles.text}>{data.father_name}</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.label}>Mother's Name:</Text>
+                        <Text style={styles.text}>{data.mother_name}</Text>
+                    </View>
+                </View>
+
+                <View style={styles.row}>
+                    <View>
+                        <Text style={styles.label}>Address:</Text>
+                        <Text style={styles.text}>{data.address}</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.label}>Institute Name:</Text>
+                        <Text style={styles.text}>{data.institute_name}</Text>
+                    </View>
+                </View>
+            </View>
+        </Page>
+    </Document>
+);
 
 const SingleBorderPage = () => {
     const [loader, setLoader] = useState(false);
@@ -18,126 +114,24 @@ const SingleBorderPage = () => {
     const borderData = formerBorderDataList.find(border => border._id === id);
 
     return (
-        <div>
-            <div className="mx-auto p-6 bg-white shadow-md rounded-lg max-w-2xl">
-                <h1 className="text-2xl font-bold mb-4 text-center">User Information Form</h1>
+        <div className="mx-auto p-6 bg-white shadow-md rounded-lg max-w-2xl">
+            <h1 className="text-2xl font-bold mb-4 text-center">User Information Form</h1>
 
-                {loader ? (
-                    <p className="text-center">Loading...</p>
-                ) : (
-                    <div className="grid grid-cols-2 gap-6">
-                        {/* First row of inputs */}
-                        <div className="flex flex-col">
-                            <label className="text-gray-600">Name</label>
-                            <input
-                                type="text"
-                                name="name"
-                                value={borderData?.name || ""}
-                                className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                readOnly
-                            />
-                        </div>
-                        <div className="flex flex-col">
-                            <label className="text-gray-600">Image URL</label>
-                            <input
-                                type="text"
-                                name="img"
-                                value={borderData?.img || ""}
-                                className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                readOnly
-                            />
-                        </div>
-
-                        {/* Second row of inputs */}
-                        <div className="flex flex-col">
-                            <label className="text-gray-600">Email</label>
-                            <input
-                                type="email"
-                                name="email"
-                                value={borderData?.email || ""}
-                                className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                readOnly
-                            />
-                        </div>
-                        <div className="flex flex-col">
-                            <label className="text-gray-600">Phone</label>
-                            <input
-                                type="text"
-                                name="phone"
-                                value={borderData?.phone || ""}
-                                className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                readOnly
-                            />
-                        </div>
-
-                        {/* Third row of inputs */}
-                        <div className="flex flex-col">
-                            <label className="text-gray-600">Address</label>
-                            <input
-                                type="text"
-                                name="address"
-                                value={borderData?.address || ""}
-                                className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                readOnly
-                            />
-                        </div>
-                        <div className="flex flex-col">
-                            <label className="text-gray-600">Father's Name</label>
-                            <input
-                                type="text"
-                                name="father_name"
-                                value={borderData?.father_name || ""}
-                                className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                readOnly
-                            />
-                        </div>
-
-                        {/* Fourth row of inputs */}
-                        <div className="flex flex-col">
-                            <label className="text-gray-600">Mother's Name</label>
-                            <input
-                                type="text"
-                                name="mother_name"
-                                value={borderData?.mother_name || ""}
-                                className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                readOnly
-                            />
-                        </div>
-                        <div className="flex flex-col">
-                            <label className="text-gray-600">Date of Birth</label>
-                            <input
-                                type="date"
-                                name="dob"
-                                value={borderData?.dob || ""}
-                                className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                readOnly
-                            />
-                        </div>
-
-                        {/* Fifth row of inputs */}
-                        <div className="flex flex-col">
-                            <label className="text-gray-600">Father's Phone Number</label>
-                            <input
-                                type="text"
-                                name="father_phone_number"
-                                value={borderData?.father_phone_number || ""}
-                                className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                readOnly
-                            />
-                        </div>
-                        <div className="flex flex-col">
-                            <label className="text-gray-600">Institute Name</label>
-                            <input
-                                type="text"
-                                name="institute_name"
-                                value={borderData?.institute_name || ""}
-                                className="border rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                readOnly
-                            />
-                        </div>
-                    </div>
-                )}
-            </div>
+            {loader ? (
+                <p className="text-center">Loading...</p>
+            ) : borderData ? (
+                <PDFDownloadLink document={<SingleBorderPDF data={borderData} />} fileName="user_information.pdf">
+                    {({ loading }) =>
+                        loading ? (
+                            <button className="btn btn-primary" disabled>Loading PDF...</button>
+                        ) : (
+                            <button className="btn btn-primary">Download PDF</button>
+                        )
+                    }
+                </PDFDownloadLink>
+            ) : (
+                <p className="text-center">User data not found</p>
+            )}
         </div>
     );
 };

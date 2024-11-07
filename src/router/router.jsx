@@ -27,6 +27,8 @@ import { getUserRole } from "../utils/getUserRole";
 import ProfileUpdate from "../component/profile/ProfileUpdate";
 import FormerBorderPage from "../pages/formar-border-page/FormerBorderPage";
 import SingleBorderPage from "../pages/formar-border-page/SingleBorderPage";
+import UserListPage from './../pages/user-list-page/UserListPage';
+import UserStatusUpdate from "../pages/user-list-page/UserStatusUpdate";
 
 
 
@@ -205,16 +207,31 @@ export const router = createBrowserRouter([
                     </ProtectedRoute>
                 )
             },
-            
-                {
-                    path: "single/border-details/:id",
-                    element: (
-                        <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
-                            <SingleBorderPage />
-                        </ProtectedRoute>
-                    )
-                }
-            
+
+            {
+                path: "single/border-details/:id",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <SingleBorderPage />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: "user-list",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <UserListPage />
+                    </ProtectedRoute>
+                )
+            },
+            {
+                path: "update-status/:id",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <UserStatusUpdate />
+                    </ProtectedRoute>
+                )
+            }
         ]
     }
 ]);
