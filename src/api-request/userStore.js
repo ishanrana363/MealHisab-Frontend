@@ -56,7 +56,20 @@ const userStore = create((set) => ({
             return false;
         }
     },
-    
+    userRoleUpdate : async (id,payload)=>{
+        const token = localStorage.getItem('token');
+        const config = {
+            headers: { Authorization: `${token}` },
+        };
+        const res = await axiosPublic.put(`/status-update/${id}`, payload, config);
+        if(res.data.status==="success"){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+
 }));
 
 export default userStore;
