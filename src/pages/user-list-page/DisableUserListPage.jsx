@@ -68,10 +68,11 @@ const DisableUserListPage = () => {
             setLoader(true);
             let res = await activeUserApi(id);
             setLoader(false);
+            window.location.reload();
             navigate("/dashboard/user-list")
             if (res) {
                 setLoader(true);
-                await totalDisableUserDataApi(1, 5, 0);
+                await totalDisableUserDataApi(1, perPage, searchValue);
                 setLoader(false);
                 Swal.fire({
                     icon: 'success',
