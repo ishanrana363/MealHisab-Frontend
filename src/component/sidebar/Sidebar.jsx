@@ -322,7 +322,7 @@ const Sidebar = () => {
                                 <li>
                                     <NavLink
                                         to="/dashboard/disable-user-list"
-                                        className={`${pathname === "/dashboard/disable-user-list" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
+                                        className={`${pathname === "/dashboard/disable-user-list" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} my-4 px-3 py-2 flex items-center  rounded-lg `}
                                     >
                                         <MdAddCircleOutline className='text-xl' />
                                         <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Disable User </span>
