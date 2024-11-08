@@ -21,3 +21,12 @@ export const otpVerifyApi = async (payload) => {
         return res.data.message;
     }
 };
+
+export const changePasswordApi = async (payload) => {
+    let res = await axiosPublic.post(`/reset-password`, payload);
+    if (res.data.status === "success") {
+        return res.data.status;
+    } else {
+        return res.data.message;
+    }
+};
