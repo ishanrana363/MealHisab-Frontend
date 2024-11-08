@@ -56,18 +56,54 @@ const userStore = create((set) => ({
             return false;
         }
     },
-    userRoleUpdate : async (id,payload)=>{
+    userRoleUpdate: async (id, payload) => {
         const token = localStorage.getItem('token');
         const config = {
             headers: { Authorization: `${token}` },
         };
         const res = await axiosPublic.put(`/status-update/${id}`, payload, config);
-        if(res.data.status==="success"){
+        if (res.data.status === "success") {
             return true;
-        }else{
+        } else {
             return false;
         }
-        
+
+    },
+    totalDisableUserLength: [],
+    totalDisableUserDataList: [],
+    totalDisableUserDataApi: async (pageNo, perPage, searchValue) => {
+        const token = localStorage.getItem('token');
+
+        const config = {
+            headers: { Authorization: `${token}` },
+        };
+        let res = await axiosPublic.get(`/disable-user/${pageNo}/${perPage}/${searchValue}`, config);
+        if (res.data["status"] === "success") {
+            if (res.data["data"]["0"]["Rows"].length > 0) {
+                set({ totalDisableUserDataList: res.data["data"]["0"]["Rows"] });
+                set({ totalDisableUserLength: res.data["data"]["0"]["Total"]["0"]["count"] })
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    },
+    activeUserApi: async (id) => {
+        const token = localStorage.getItem('token');
+        const config = {
+            headers: { Authorization: `${token}` },
+        };
+
+        // Pass an empty object `{}` as the second parameter, and `config` as the third
+        let res = await axiosPublic.put(`/enable-user/${id}`, {}, config);
+
+        console.log(res);
+        if (res.data["status"] === "success") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }));

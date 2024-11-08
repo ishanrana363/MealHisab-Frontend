@@ -28,6 +28,7 @@ import FormerBorderPage from "../pages/formar-border-page/FormerBorderPage";
 import SingleBorderPage from "../pages/formar-border-page/SingleBorderPage";
 import UserListPage from './../pages/user-list-page/UserListPage';
 import UserStatusUpdate from "../pages/user-list-page/UserStatusUpdate";
+import DisableUserListPage from "../pages/user-list-page/DisableUserListPage";
 
 
 
@@ -228,6 +229,15 @@ export const router = createBrowserRouter([
                 element: (
                     <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
                         <UserStatusUpdate />
+                    </ProtectedRoute>
+                )
+            }
+            ,
+            {
+                path: "disable-user-list",
+                element: (
+                    <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                        <DisableUserListPage />
                     </ProtectedRoute>
                 )
             }
