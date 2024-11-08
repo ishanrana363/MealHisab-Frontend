@@ -1,11 +1,10 @@
-import React from 'react'
-import UserDashboard from '../component/UserDashboard'
 import { Outlet } from 'react-router-dom'
+import Navbar from './UserNavBar';
 
 const UserLayout = () => {
   return (
     <div>
-      <UserDashboard></UserDashboard>
+      <Navbar></Navbar>
       <Outlet></Outlet>
       
     </div>

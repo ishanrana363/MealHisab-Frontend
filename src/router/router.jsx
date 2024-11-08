@@ -6,6 +6,7 @@ import Layout from "../layout/Layout";
 import UserLayout from "../user-layout/UserLayout";
 import ProtectedRoute from "../component/protected-route/ProtectedRoute";
 import { getUserRole } from "../utils/getUserRole";
+
 import BorderCreateFormPage from './../pages/border-page/BorderCreateFormPage';
 import AllBorderListPage from './../pages/border-page/AllBorderListPage';
 import BorderUpdateFormPage from './../pages/border-page/BorderUpdateFormPage';
@@ -30,69 +31,69 @@ import SingleBorderPage from './../pages/formar-border-page/SingleBorderPage';
 import UserListPage from './../pages/user-list-page/UserListPage';
 import UserStatusUpdate from './../pages/user-list-page/UserStatusUpdate';
 import DisableUserListPage from './../pages/user-list-page/DisableUserListPage';
-import UserOrders from "../component/UserOrders";
-import UserNavBar from "../user-layout/UserNavBar";
+import UserOrders from './../component/UserOrders';
 
 
 const userRole = getUserRole();
 
-// const adminRoutes = [
-//     { path: "border-create", element: <BorderCreateFormPage /> },
-//     { path: "all-border", element: <AllBorderListPage /> },
-//     { path: "border-update/:id", element: <BorderUpdateFormPage /> },
-//     { path: "border-details/:id", element: <BorderDetailsPage /> },
-//     { path: "rice-entry", element: <RiceEntryFromPage /> },
-//     { path: "rice-calculation", element: <RiceCalculationFormPage /> },
-//     { path: "daily-rice-entry-form", element: <DailyRiceEntryFormPage /> },
-//     { path: "daily-rice-calculation", element: <DailyRiceCalculationPage /> },
-//     { path: "vegetable-entry", element: <VegetableEntryFormPage /> },
-//     { path: "mill-calculaton", element: <TotalMillCalculationPage /> },
-//     { path: "bazar-insert", element: <InsertBazarFormPage /> },
-//     { path: "calculation-bazar-border", element: <TotalCalculationBazarForm /> },
-//     { path: "calculation-bazar", element: <BazarListPage /> },
-//     { path: "entry-money", element: <EntryMoneyFormPage /> },
-//     { path: "money-calculations", element: <MoneyCalculationFormPage /> },
-//     { path: "thiry-days-money-calculation", element: <ThirtyDaysMoneyCalculationFromPage /> },
-//     { path: "thiry-days-rice-calculation", element: <ThirtyDaysRiceCalculationPage /> },
-//     { path: "profile", element: <UserProfilePage /> },
-//     { path: "profile-update", element: <ProfileUpdate /> },
-//     { path: "former-border-list", element: <FormerBorderPage /> },
-//     { path: "single/border-details/:id", element: <SingleBorderPage /> },
-//     { path: "user-list", element: <UserListPage /> },
-//     { path: "update-status/:id", element: <UserStatusUpdate /> },
-//     { path: "disable-user-list", element: <DisableUserListPage /> },
-// ];
+const adminRoutes = [
+    { path: "border-create", element: <BorderCreateFormPage /> },
+    { path: "all-border", element: <AllBorderListPage /> },
+    { path: "border-update/:id", element: <BorderUpdateFormPage /> },
+    { path: "border-details/:id", element: <BorderDetailsPage /> },
+    { path: "rice-entry", element: <RiceEntryFromPage /> },
+    { path: "rice-calculation", element: <RiceCalculationFormPage /> },
+    { path: "daily-rice-entry-form", element: <DailyRiceEntryFormPage /> },
+    { path: "daily-rice-calculation", element: <DailyRiceCalculationPage /> },
+    { path: "vegetable-entry", element: <VegetableEntryFormPage /> },
+    { path: "mill-calculaton", element: <TotalMillCalculationPage /> },
+    { path: "bazar-insert", element: <InsertBazarFormPage /> },
+    { path: "calculation-bazar-border", element: <TotalCalculationBazarForm /> },
+    { path: "calculation-bazar", element: <BazarListPage /> },
+    { path: "entry-money", element: <EntryMoneyFormPage /> },
+    { path: "money-calculations", element: <MoneyCalculationFormPage /> },
+    { path: "thiry-days-money-calculation", element: <ThirtyDaysMoneyCalculationFromPage /> },
+    { path: "thiry-days-rice-calculation", element: <ThirtyDaysRiceCalculationPage /> },
+    { path: "profile", element: <UserProfilePage /> },
+    { path: "profile-update", element: <ProfileUpdate /> },
+    { path: "former-border-list", element: <FormerBorderPage /> },
+    { path: "single/border-details/:id", element: <SingleBorderPage /> },
+    { path: "user-list", element: <UserListPage /> },
+    { path: "update-status/:id", element: <UserStatusUpdate /> },
+    { path: "disable-user-list", element: <DisableUserListPage /> },
+];
 
 const userRoutes = [
     {
-        path: "disable-user-list", element: <DisableUserListPage />
+        path: "order",
+        element: <UserOrders />,
     },
 ];
 
 export const router = createBrowserRouter([
     { path: "/", element: <LoginFormPage /> },
     { path: "/registration", element: <RegistrationFormPage /> },
-    // {
-    //     path: "/dashboard",
-    //     element: (
-    //         <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
-    //             <Layout />
-    //         </ProtectedRoute>
-    //     ),
-    //     children: adminRoutes.map((route) => ({
-    //         ...route,
-    //         element: (
-    //             <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
-    //                 {route.element}
-    //             </ProtectedRoute>
-    //         ),
-    //     })),
-    // },
     {
-        path: "/user",
+        path: "/dashboard",
+        element: (
+            <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                <Layout />
+            </ProtectedRoute>
+        ),
+        children: adminRoutes.map((route) => ({
+            ...route,
+            element: (
+                <ProtectedRoute allowedRoles={['admin']} userRole={userRole}>
+                    {route.element}
+                </ProtectedRoute>
+            ),
+        })),
+    },
+    {
+        path: "/user-dashboard",
         element: (
             <ProtectedRoute allowedRoles={['user']} userRole={userRole}>
-                <UserNavBar />
+                <UserLayout />
             </ProtectedRoute>
         ),
         children: userRoutes.map((route) => ({

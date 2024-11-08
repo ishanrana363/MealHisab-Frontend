@@ -1,142 +1,174 @@
-import { useState } from "react";
-import { Helmet } from "react-helmet-async";
-import toast from "react-hot-toast";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { Link } from "react-router-dom";
-import { loginApi } from "../../api-request/authApi";
-import Swal from "sweetalert2";
-import SpinnerLoader from "../loader/SpinnerLoader";
+import React, { useState } from 'react';
+import { createAlert } from '../../helper/createAlert';
+import { loginApi } from '../../api-request/authApi';
+import Swal from 'sweetalert2';
+import SpinnerLoader from '../loader/SpinnerLoader';
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
+import toast from 'react-hot-toast';
+
 
 const LoginForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [loader, setLoader] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
+    setIsPasswordVisible(!isPasswordVisible);
   };
 
-  const handleSubmit = async (e) => {
+  const adminLogin = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    const payload = { email, password };
+    console.log(email, password);
+    const payload = { email: email, password: password };
+    const resp = await createAlert();
 
-    if (!email) {
-      toast.error("Please enter a valid email");
-    } else if (!password) {
-      toast.error("Please enter a valid password");
-    } else {
+    if (resp.isConfirmed) {
       setLoader(true);
-      try {
-        const res = await loginApi(payload);
-        setLoader(false);
-        if (res) {
-          window.location.href = "/dashboard";
-          Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Login successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        } else {
-          Swal.fire({
-            position: "top-center",
-            icon: "error",
-            title: "Login failed",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      } catch (error) {
-        setLoader(false);
-        toast.error("An error occurred. Please try again.");
+      const res = await loginApi(payload);
+      setLoader(false);
+      if (res) {
+        window.location.href = '/dashboard';
+        Swal.fire({ position: 'top-center', icon: 'success', title: 'Login successfully', showConfirmButton: false, timer: 1500 });
+      } else {
+        toast.error("Login failed")
+      }
+    }
+  };
+
+  const userLogin = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const payload = { email: email, password: password };
+    const resp = await createAlert();
+
+    if (resp.isConfirmed) {
+      const res = await loginApi(payload);
+      if (res) {
+        window.location.href = '/user-dashboard';
+        Swal.fire({ position: 'top-center', icon: 'success', title: 'Login successfully', showConfirmButton: false, timer: 1500 });
+      } else {
+        toast.error("Login failed")
       }
     }
   };
 
   return (
-    <div>
-      <Helmet>
-        <title>MealHisab | Login</title>
-      </Helmet>
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <form
-          onSubmit={handleSubmit}
-          className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg"
-        >
-          <h2 className="text-2xl font-semibold text-center text-gray-800">
-            Login
-          </h2>
-
-          {/* Email Field */}
-          <div>
-            <label htmlFor="email" className="block mb-1 text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Enter your email"
-              className="w-full px-4 py-2 text-gray-800 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-green-500"
-            />
-          </div>
-
-          {/* Password Field with Toggle */}
-          <div className="relative">
-            <label htmlFor="password" className="block mb-1 text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              name="password"
-              placeholder="Enter your password"
-              className="w-full px-4 py-2 text-gray-800 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-green-500"
-            />
-            <button
-              type="button"
-              onClick={togglePasswordVisibility}
-              className="absolute right-3 top-9 text-gray-600 hover:text-gray-800"
-            >
-              {showPassword ? (
-                <AiFillEyeInvisible className="w-5 h-5" />
-              ) : (
-                <AiFillEye className="w-5 h-5" />
-              )}
-            </button>
-          </div>
-
-          {/* Submit Button */}
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+        <div className="flex justify-center space-x-4 mb-6">
           <button
-            type="submit"
-            className="w-full py-2 font-semibold text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring focus:ring-green-500"
+            onClick={() => setIsAdmin(false)}
+            className={`px-4 py-2 text-white rounded-md ${!isAdmin ? 'bg-green-700' : 'bg-blue-400'}`}
           >
-            Login
+            User Login
           </button>
+          <button
+            onClick={() => setIsAdmin(true)}
+            className={`px-4 py-2 text-white rounded-md ${isAdmin ? 'bg-green-700' : 'bg-blue-400'}`}
+          >
+            Admin Login
+          </button>
+        </div>
 
-          {/* Additional Links */}
-          <div className="mt-4 text-center">
-            <a href="/forgot-password" className="text-sm text-gray-600 hover:text-green-600">
-              Forgot Password?
-            </a>
-            <p className="mt-2 text-sm text-gray-600">
-              Don't have an account?{" "}
-              <Link to="/registration" className="text-green-600 hover:underline">
-                Register here.
-              </Link>
-            </p>
+        {isAdmin ? (
+          <div>
+            <h2 className="text-2xl text-center mb-4">Admin Login</h2>
+            <form onSubmit={adminLogin}>
+              <div className="mb-4">
+                <label htmlFor="admin-email" className="block text-sm">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Enter your email"
+                  name="email"
+                  className="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div className="mb-4 relative">
+                <label htmlFor="user-password" className="block text-sm">Password</label>
+                <input
+                  type={isPasswordVisible ? "text" : "password"}
+                  id="user-password"
+                  name="password"
+                  placeholder="Enter your password"
+                  className="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="absolute right-2 top-1/2 mt-[12px] transform -translate-y-1/2 text-gray-600 focus:outline-none"
+                >
+                  {isPasswordVisible ? (
+                    < FaEye className="h-5 w-5" />
+                  ) : (
+                    <FaEyeSlash className="h-5 w-5" />
+                  )}
+                </button>
+              </div>
+              <button
+                type="submit"
+                className="w-full py-2 bg-blue-600 text-white rounded-md"
+                disabled={loader}
+              >
+                {loader ? <SpinnerLoader /> : "Admin Login"}
+              </button>
+            </form>
           </div>
-        </form>
+        ) : (
+          <div>
+            <h2 className="text-2xl text-center mb-4">User Login</h2>
+            <form onSubmit={userLogin}>
+              <div className="mb-4">
+                <label htmlFor="user-email" className="block text-sm">Email</label>
+                <input
+                  type="email"
+                  id="user-email"
+                  name="email"
+                  placeholder="Enter your email"
+                  className="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md"
+                />
+              </div>
+              <div className="mb-4 relative">
+                <label htmlFor="user-password" className="block text-sm">Password</label>
+                <input
+                  type={isPasswordVisible ? "text" : "password"}
+                  id="user-password"
+                  name="password"
+                  placeholder="Enter your password"
+                  className="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="absolute right-2 top-1/2 mt-[12px] transform -translate-y-1/2 text-gray-600 focus:outline-none"
+                >
+                  {isPasswordVisible ? (
+                    < FaEye className="h-5 w-5" />
+                  ) : (
+                    <FaEyeSlash className="h-5 w-5" />
+                  )}
+                </button>
+              </div>
+              <button
+                type="submit"
+                className="w-full py-2 bg-blue-600 text-white rounded-md"
+                disabled={loader}
+              >
+                {loader ? "login..." : "Login" }
+              </button>
+            </form>
+          </div>
+        )}
       </div>
-
-      {/* Loader Overlay */}
-      {loader && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+      {/* {loader && (
+        <div>
           <SpinnerLoader />
         </div>
-      )}
+      )} */}
     </div>
   );
 };
