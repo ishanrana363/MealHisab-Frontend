@@ -248,25 +248,25 @@ const Sidebar = () => {
 
                         {activeMenu === 'calculation' && (
                             <ul className="pl-6 my-3 ">
-                            <li>
-                                <NavLink
-                                    to="/dashboard/thiry-days-money-calculation"
-                                    className={`${pathname === "/dashboard/thiry-days-money-calculation" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
-                                >
-                                    <MdAddCircleOutline className='text-xl' />
-                                    <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}> Money Calculation </span>
-                                </NavLink>
-                            </li>
-                            <li className="mt-2">
-                                <NavLink
-                                    to="/dashboard/thiry-days-rice-calculation"
-                                    className={`${pathname === "/dashboard/thiry-days-rice-calculation" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
-                                >
-                                    <MdAddCircleOutline className='text-xl' />
-                                    <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Rice Calculation </span>
-                                </NavLink>
-                            </li>
-                        </ul>
+                                <li>
+                                    <NavLink
+                                        to="/dashboard/thiry-days-money-calculation"
+                                        className={`${pathname === "/dashboard/thiry-days-money-calculation" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
+                                    >
+                                        <MdAddCircleOutline className='text-xl' />
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}> Money Calculation </span>
+                                    </NavLink>
+                                </li>
+                                <li className="mt-2">
+                                    <NavLink
+                                        to="/dashboard/thiry-days-rice-calculation"
+                                        className={`${pathname === "/dashboard/thiry-days-rice-calculation" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
+                                    >
+                                        <MdAddCircleOutline className='text-xl' />
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Rice Calculation </span>
+                                    </NavLink>
+                                </li>
+                            </ul>
                         )}
                     </li>
                     <li>
@@ -283,17 +283,17 @@ const Sidebar = () => {
 
                         {activeMenu === 'former-border' && (
                             <ul className="pl-6 my-3 ">
-                            <li>
-                                <NavLink
-                                    to="/dashboard/former-border-list"
-                                    className={`${pathname === "/dashboard/former-border-list" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
-                                >
-                                    <MdAddCircleOutline className='text-xl' />
-                                    <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}> Former Border List </span>
-                                </NavLink>
-                            </li>
-                            
-                        </ul>
+                                <li>
+                                    <NavLink
+                                        to="/dashboard/former-border-list"
+                                        className={`${pathname === "/dashboard/former-border-list" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
+                                    >
+                                        <MdAddCircleOutline className='text-xl' />
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}> Former Border List </span>
+                                    </NavLink>
+                                </li>
+
+                            </ul>
                         )}
                     </li>
                     <li>
@@ -310,17 +310,26 @@ const Sidebar = () => {
 
                         {activeMenu === 'user-list' && (
                             <ul className="pl-6 my-3 ">
-                            <li>
-                                <NavLink
-                                    to="/dashboard/user-list"
-                                    className={`${pathname === "/dashboard/user-list" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
-                                >
-                                    <MdAddCircleOutline className='text-xl' />
-                                    <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}> User List </span>
-                                </NavLink>
-                            </li>
-                            
-                        </ul>
+                                <li>
+                                    <NavLink
+                                        to="/dashboard/user-list"
+                                        className={`${pathname === "/dashboard/user-list" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
+                                    >
+                                        <MdAddCircleOutline className='text-xl' />
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}> User List </span>
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink
+                                        to="/dashboard/disable-user-list"
+                                        className={`${pathname === "/dashboard/disable-user-list" ? `bg-[#FF9100] text-[black]` : `bg-[#D5ED9F]`} px-3 py-2 flex items-center  rounded-lg `}
+                                    >
+                                        <MdAddCircleOutline className='text-xl' />
+                                        <span className={`${isSidebarOpen ? 'ml-3' : 'hidden'} text-sm font-bold `}>Disable User </span>
+                                    </NavLink>
+                                </li>
+
+                            </ul>
                         )}
                     </li>
                 </ul>

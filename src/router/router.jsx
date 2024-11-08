@@ -21,7 +21,6 @@ import MoneyCalculationFormPage from "../pages/money-page/MoneyCalculationFormPa
 import ThirtyDaysMoneyCalculationFromPage from "../pages/ThirtyDaysCalculationPage/ThirtyDaysMoneyCalculationFromPage";
 import ThirtyDaysRiceCalculationPage from './../pages/ThirtyDaysCalculationPage/ThirtyDaysRiceCalculationPage';
 import UserProfilePage from './../pages/profile-page/UserProfilePage';
-import UpdateProfilePage from './../pages/profile-page/UpdateProfilePage';
 import ProtectedRoute from "../component/protected-route/ProtectedRoute";
 import { getUserRole } from "../utils/getUserRole";
 import ProfileUpdate from "../component/profile/ProfileUpdate";
