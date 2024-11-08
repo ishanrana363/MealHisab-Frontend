@@ -27,28 +27,29 @@ const LoginForm = () => {
     const password = e.target.password.value;
     const payload = { email, password };
 
+    // Check if email and password are provided
     if (!email) {
       toast.error("Email is required");
       return;
     } else if (!password) {
       toast.error("Password is required");
       return;
-    } else {
-      const resp = await createAlert(); // Confirm login action
-      if (resp.isConfirmed) {
-        setLoader(true); // Show loading spinner
-        const res = await loginApi(payload); // Call API for admin login
-        setLoader(false); // Hide loading spinner after response
-        if (res) {
-          window.location.href = '/dashboard'; // Redirect on successful login
-          Swal.fire({ position: 'top-center', icon: 'success', title: 'Login successfully', showConfirmButton: false, timer: 1500 });
-        } else {
-          toast.error("Login failed");
-        }
-      }
     }
 
+    // Show confirmation alert before proceeding with login
+    const resp = await createAlert();
+    if (resp.isConfirmed) {
+      setLoader(true); // Show loading spinner
+      const res = await loginApi(payload); // Call API for admin login
+      setLoader(false); // Hide loading spinner after response
 
+      if (res) {
+        window.location.href = '/dashboard'; // Redirect to dashboard on successful login
+        Swal.fire({ position: 'top-center', icon: 'success', title: 'Login successfully', showConfirmButton: false, timer: 1500 });
+      } else {
+        toast.error("Login failed");
+      }
+    }
   };
 
   // User login function
@@ -57,28 +58,30 @@ const LoginForm = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     const payload = { email, password };
+
+    // Check if email and password are provided
     if (!email) {
       toast.error("Email is required");
       return;
     } else if (!password) {
       toast.error("Password is required");
       return;
-    } else {
-
-      const resp = await createAlert(); // Confirm login action
-      if (resp.isConfirmed) {
-        setLoader(true); // Show loading spinner
-        const res = await loginApi(payload); // Call API for user login
-        setLoader(false); // Hide loading spinner after response
-        if (res) {
-          window.location.href = '/user-dashboard'; // Redirect on successful login
-          Swal.fire({ position: 'top-center', icon: 'success', title: 'Login successfully', showConfirmButton: false, timer: 1500 });
-        } else {
-          toast.error("Login failed");
-        }
-      }
     }
 
+    // Show confirmation alert before proceeding with login
+    const resp = await createAlert();
+    if (resp.isConfirmed) {
+      setLoader(true); // Show loading spinner
+      const res = await loginApi(payload); // Call API for user login
+      setLoader(false); // Hide loading spinner after response
+
+      if (res) {
+        window.location.href = '/user-dashboard'; // Redirect to user dashboard on successful login
+        Swal.fire({ position: 'top-center', icon: 'success', title: 'Login successfully', showConfirmButton: false, timer: 1500 });
+      } else {
+        toast.error("Login failed");
+      }
+    }
   };
 
   return (
@@ -113,18 +116,18 @@ const LoginForm = () => {
                 <input
                   type="email"
                   id="email"
-                  placeholder="Enter your email"
                   name="email"
+                  placeholder="Enter your email"
                   className="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md"
                 />
               </div>
 
               {/* Admin Password Input with Toggle Visibility */}
               <div className="mb-4 relative">
-                <label htmlFor="user-password" className="block text-sm">Password</label>
+                <label htmlFor="admin-password" className="block text-sm">Password</label>
                 <input
                   type={isPasswordVisible ? "text" : "password"}
-                  id="user-password"
+                  id="admin-password"
                   name="password"
                   placeholder="Enter your password"
                   className="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md pr-10"
@@ -193,10 +196,9 @@ const LoginForm = () => {
                 className="w-full py-2 bg-blue-600 text-white rounded-md"
                 disabled={loader}
               >
-                {loader ? "login..." : "Login"}
+                {loader ? "Login..." : "Login"}
               </button>
               <Link className="text-center block my-3 hover:underline" to={"/send-email"}>Forget Password</Link>
-
             </form>
           </div>
         )}
