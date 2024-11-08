@@ -9,10 +9,11 @@ import Swal from 'sweetalert2';
 import { deleteAlert } from '../../helper/deleteAlert';
 import userStore from '../../api-request/userStore';
 import SpinnerLoader from '../../component/loader/SpinnerLoader';
+import { disableAlert } from '../../helper/disableAlert';
 
 const UserListPage = () => {
     const navigate = useNavigate();
-    const { totalUserDataApi, totalUserDataList, totalUserLength } = userStore();
+    const { totalUserDataApi, totalUserDataList, totalUserLength,disableUserApi } = userStore();
     const [loader, setLoader] = useState(false);
     const [perPage, setPerPage] = useState(5);
     const [searchValue, setSearchValue] = useState(0);
@@ -56,35 +57,25 @@ const UserListPage = () => {
         await totalUserDataApi(1, perPage, searchValue);
         setLoader(false);
     };
-
-    // const borderDelete = async (id) => {
-    //     let resp = await deleteAlert();
-    //     if (resp.isConfirmed) {
-    //         setLoader(true);
-    //         let res = await deleteBorderApi(id);
-    //         setLoader(false);
-    //         if (res) {
-    //             setLoader(true);
-    //             await totalUserDataApi(1, perPage, searchValue);
-    //             setLoader(false);
-    //             Swal.fire({
-    //                 position: "top-center",
-    //                 icon: "success",
-    //                 title: "Deleted successfully",
-    //                 showConfirmButton: false,
-    //                 timer: 1500
-    //             });
-    //         } else {
-    //             Swal.fire({
-    //                 position: "top-center",
-    //                 icon: "error",
-    //                 title: "Delete failed",
-    //                 showConfirmButton: false,
-    //                 timer: 1500
-    //             });
-    //         }
-    //     }
-    // };
+    const disableUser = async (id) => {
+        let resp = await disableAlert();
+        if (resp.isConfirmed) {
+            setLoader(true);
+            let res = await  disableUserApi(id);
+            setLoader(false);
+            navigate("/dashboard/user-list")
+            if (res) {
+                setLoader(true);
+                await totalUserDataApi(1, perPage, searchValue);
+                setLoader(false);
+                Swal.fire({
+                    title: 'User has been disabled successfully!',
+                    icon:'success',
+                    confirmButtonText: 'Okay',
+                });
+            }
+        }
+    };
     return (
         <div>
             <div>
@@ -138,6 +129,7 @@ const UserListPage = () => {
                                     <th className="py-3 px-4 border-b">Email</th>
                                     <th className="py-3 px-4 border-b">Role</th>
                                     <th className="py-3 px-4 border-b">Phone</th>
+                                    <th className="py-3 px-4 border-b">Disable User</th>
                                     <th className="py-3 px-4 border-b">Created Date</th>
                                     <th className="py-3 px-4 border-b">Update Role</th>
                                 </tr>
@@ -180,6 +172,12 @@ const UserListPage = () => {
                                                     {item?.phone}
                                                 </Link>
                                             </td>
+                                            <td><button onClick={()=>{disableUser(item._id)}}
+                                                className="bg-teal-500 text-white px-1 py-1 rounded hover:bg-teal-600"
+                                                data-tooltip="Disable User"
+                                            >
+                                                <FaEdit />
+                                            </button></td>
                                             <td className="py-3 px-4 border-b">
                                                 <Link to={``}>
                                                     {moment(item?.createdAt).format('YYYY-MM-DD')}

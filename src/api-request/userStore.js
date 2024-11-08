@@ -104,6 +104,21 @@ const userStore = create((set) => ({
         } else {
             return false;
         }
+    },
+
+    disableUserApi : async (id)=>{
+        const token = localStorage.getItem('token');
+        const config = {
+            headers: { Authorization: `${token}` },
+        };
+        let res = await axiosPublic.put(`/user/delete/${id}`, {}, config);
+        console.log(res);
+        if (res.data["status"] === "success") {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
 }));
