@@ -32,6 +32,9 @@ import UserListPage from './../pages/user-list-page/UserListPage';
 import UserStatusUpdate from './../pages/user-list-page/UserStatusUpdate';
 import DisableUserListPage from './../pages/user-list-page/DisableUserListPage';
 import UserOrders from './../component/UserOrders';
+import EmailSendPage from './../pages/forget-password-page/EmailSendPage';
+import EmailVerifyPage from './../pages/forget-password-page/EmailVerifyPage';
+import ForgetPasswordPage from './../pages/forget-password-page/ForgetPasswordPage';
 
 
 const userRole = getUserRole();
@@ -73,6 +76,9 @@ const userRoutes = [
 export const router = createBrowserRouter([
     { path: "/", element: <LoginFormPage /> },
     { path: "/registration", element: <RegistrationFormPage /> },
+    { path: "/send-email", element: <EmailSendPage/> },
+    { path: "/email-verify", element: <EmailVerifyPage/> },
+    { path: "/forget-password", element: <ForgetPasswordPage/> },
     {
         path: "/dashboard",
         element: (

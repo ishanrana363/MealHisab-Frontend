@@ -6,6 +6,7 @@ import SpinnerLoader from '../loader/SpinnerLoader';
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 
 const LoginForm = () => {
@@ -42,11 +43,14 @@ const LoginForm = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
+    console.log(email, password);
     const payload = { email: email, password: password };
     const resp = await createAlert();
 
     if (resp.isConfirmed) {
+      setLoader(true);
       const res = await loginApi(payload);
+      setLoader(false);
       if (res) {
         window.location.href = '/user-dashboard';
         Swal.fire({ position: 'top-center', icon: 'success', title: 'Login successfully', showConfirmButton: false, timer: 1500 });
@@ -114,9 +118,10 @@ const LoginForm = () => {
                 className="w-full py-2 bg-blue-600 text-white rounded-md"
                 disabled={loader}
               >
-                {loader ? <SpinnerLoader /> : "Admin Login"}
+                {loader ? "Admin login..." : "Admin Login"}
               </button>
             </form>
+            <Link className={`text-center block my-3 hover:underline `} to={"/send-email"}>Forget Password</Link>
           </div>
         ) : (
           <div>
@@ -164,11 +169,11 @@ const LoginForm = () => {
           </div>
         )}
       </div>
-      {/* {loader && (
+      {loader && (
         <div>
           <SpinnerLoader />
         </div>
-      )} */}
+      )}
     </div>
   );
 };
