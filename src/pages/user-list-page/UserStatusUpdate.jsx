@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import userStore from '../../api-request/userStore';
 import { updateAlert } from '../../helper/updateAlert';
 import Swal from 'sweetalert2';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const UserStatusUpdate = () => {
     const { userRoleUpdate,totalUserDataApi } = userStore();
     const [loader, setLoader] = useState(false);
     const { id } = useParams();
+    const navigate = useNavigate()
 
     const handleUpdate = async (e) => {
         e.preventDefault();
@@ -23,6 +24,7 @@ const UserStatusUpdate = () => {
             if (res) {
                 setLoader(true);
                 await totalUserDataApi(1,5,0);
+                navigate("/dashboard/user-list")
                 setLoader(false);
                 Swal.fire({
                     position: 'top-center',

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import userStore from '../../api-request/userStore';
 import { Link } from 'react-router-dom';
+import SpinnerLoader from './../loader/SpinnerLoader';
 
 const UserProfile = () => {
   const { userProfileDataApi, userProfileData } = userStore();
@@ -92,6 +93,13 @@ const UserProfile = () => {
           </button>
         </form>
       </div>
+      {
+        loader && (
+          <div>
+            <SpinnerLoader></SpinnerLoader>
+          </div>
+        )
+      }
     </div>
   )
 }
