@@ -9,6 +9,7 @@ import moment from 'moment';
 import userStore from '../../api-request/userStore';
 import SpinnerLoader from '../../component/loader/SpinnerLoader';
 import { disableAlert } from '../../helper/disableAlert';
+import { activeAlert } from '../../helper/activeAlert';
 
 const DisableUserListPage = () => {
     const { totalDisableUserDataApi, totalDisableUserDataList, totalDisableUserLength, activeUserApi } = userStore();
@@ -63,7 +64,7 @@ const DisableUserListPage = () => {
 
 
     const handleDisableUser = async (id) => {
-        let resp = await disableAlert();
+        let resp = await activeAlert();
         if (resp.isConfirmed) {
             setLoader(true);
             let res = await activeUserApi(id);
