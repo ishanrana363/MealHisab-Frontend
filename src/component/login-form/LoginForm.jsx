@@ -6,6 +6,7 @@ import SpinnerLoader from '../loader/SpinnerLoader';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { loginAlert } from '../../helper/loginAlert';
 
 const LoginForm = () => {
   // State to determine if the form is for admin login or user login
@@ -37,7 +38,7 @@ const LoginForm = () => {
     }
 
     // Show confirmation alert before proceeding with login
-    const resp = await createAlert();
+    const resp = await loginAlert()
     if (resp.isConfirmed) {
       setLoader(true); // Show loading spinner
       const res = await loginApi(payload); // Call API for admin login
@@ -69,7 +70,7 @@ const LoginForm = () => {
     }
 
     // Show confirmation alert before proceeding with login
-    const resp = await createAlert();
+    const resp = await loginAlert();
     if (resp.isConfirmed) {
       setLoader(true); // Show loading spinner
       const res = await loginApi(payload); // Call API for user login

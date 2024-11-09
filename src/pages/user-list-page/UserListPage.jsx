@@ -153,7 +153,7 @@ const UserListPage = () => {
                                                     <img
                                                         src={item?.img}
                                                         alt={item?.name}
-                                                        className="h-12 w-12 rounded-full object-cover mx-auto"
+                                                        className="h-10 w-10 rounded-full object-cover mx-auto"
                                                     />
                                                 </Link>
                                             </td>
