@@ -12,6 +12,15 @@ export default {
       colors: {
         textColor: "#0F0F0F", // Custom text color
       },
+      animation: {
+        marquee: 'marquee 30s linear infinite', // Increased duration to 30 seconds
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
+      },
     },
   },
   plugins: [

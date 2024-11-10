@@ -35,6 +35,7 @@ import UserOrders from './../component/UserOrders';
 import EmailSendPage from './../pages/forget-password-page/EmailSendPage';
 import EmailVerifyPage from './../pages/forget-password-page/EmailVerifyPage';
 import ForgetPasswordPage from './../pages/forget-password-page/ForgetPasswordPage';
+import ImageGallery from "../component/ImageGallery";
 
 
 const userRole = getUserRole();
@@ -79,6 +80,7 @@ export const router = createBrowserRouter([
     { path: "/send-email", element: <EmailSendPage/> },
     { path: "/email-verify", element: <EmailVerifyPage/> },
     { path: "/forget-password", element: <ForgetPasswordPage/> },
+    { path: "/img", element: <ImageGallery/> },
     {
         path: "/dashboard",
         element: (
