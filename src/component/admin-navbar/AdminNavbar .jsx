@@ -36,7 +36,7 @@ useEffect(()=>{
             <div className="">
                 <div className="navbar bg-grdate shadow-md border border-black text-white ">
                     <div className="flex-1">
-                        <NavLink to="/dashboard" className="btn btn-ghost text-3xl font-mono font-bold">
+                        <NavLink to="/dashboard" className="btn btn-ghost  md:text-3xl font-mono font-bold">
                             MILL-HISAB
                         </NavLink>
                     </div>
@@ -47,7 +47,7 @@ useEffect(()=>{
                                 role="button"
                                 className="btn btn-ghost btn-circle avatar"
                             >
-                                <div onClick={handleToggle} className="w-10 rounded-full">
+                                <div onClick={handleToggle} className="md:w-10 w-8 rounded-full">
                                     <img alt="Admin Avatar" src={userProfileData?.img} />
                                 </div>
                             </div>
@@ -59,17 +59,17 @@ useEffect(()=>{
                 `}
                             >
                                 <li>
-                                    <Link to="profile" className="flex justify-center text-lg text-black font-bold font-mono">
+                                    <Link to="profile" className="flex justify-center text-[12px] md:text-lg text-black font-bold font-mono">
                                         Profile
                                     </Link>
                                 </li>
                                 <li className="">
-                                    <Link className="flex justify-center text-lg font-bold font-mono text-black" to="/profile">
+                                    <Link className="flex justify-center text-[12px] md:text-lg font-bold font-mono text-black" to="/profile">
                                         Settings
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link onClick={handleLogout} className="flex justify-center text-lg font-bold font-mono text-black " to={""}>
+                                    <Link onClick={handleLogout} className="flex justify-center text-[12px] md:text-lg font-bold font-mono text-black " to={""}>
                                         Logout
                                     </Link>
                                 </li>
