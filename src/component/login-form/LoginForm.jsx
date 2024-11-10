@@ -87,19 +87,19 @@ const LoginForm = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+      <div className="w-full max-w-md bg-white p-4 md:p-8 rounded-lg shadow-lg">
 
         {/* Toggle between User Login and Admin Login */}
-        <div className="flex justify-center space-x-4 mb-6">
+        <div className="flex justify-center space-x-4 mb-3 md:mb-6">
           <button
             onClick={() => setIsAdmin(false)} // Switch to user login
-            className={`px-4 py-2 text-white rounded-md ${!isAdmin ? 'bg-green-700' : 'bg-blue-400'}`}
+            className={`md:px-4 md:py-2 px-2  md:text-[18px] text-[10px] text-white rounded-md ${!isAdmin ? 'bg-green-700' : 'bg-blue-400'}`}
           >
             User Login
           </button>
           <button
             onClick={() => setIsAdmin(true)} // Switch to admin login
-            className={`px-4 py-2 text-white rounded-md ${isAdmin ? 'bg-green-700' : 'bg-blue-400'}`}
+            className={`md:px-4 px-2 py-2 md:text-[18px] text-[10px]  md:py-2 text-white rounded-md ${isAdmin ? 'bg-green-700' : 'bg-blue-400'}`}
           >
             Admin Login
           </button>
@@ -109,29 +109,29 @@ const LoginForm = () => {
         {isAdmin ? (
           // Admin Login Form
           <div>
-            <h2 className="text-2xl text-center mb-4">Admin Login</h2>
+            <h2 className="md:text-2xl text-center md:mb-4">Admin Login</h2>
             <form onSubmit={adminLogin}>
               {/* Admin Email Input */}
               <div className="mb-4">
-                <label htmlFor="admin-email" className="block text-sm">Email</label>
+                <label htmlFor="admin-email" className="block text-[9px] md:text-sm">Email</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   placeholder="Enter your email"
-                  className="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md"
+                  className="w-full md:px-4 px-2 py-1 md:py-2 mt-1 md:mt-2 border border-gray-300 rounded-md"
                 />
               </div>
 
               {/* Admin Password Input with Toggle Visibility */}
               <div className="mb-4 relative">
-                <label htmlFor="admin-password" className="block text-sm">Password</label>
+                <label htmlFor="admin-password" className="block text-[9px] md:text-sm text-sm">Password</label>
                 <input
                   type={isPasswordVisible ? "text" : "password"}
                   id="admin-password"
                   name="password"
                   placeholder="Enter your password"
-                  className="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md pr-10"
+                  className="w-full md:px-4 px-2 py-1 md:py-2 mt-1 md:mt-2 border border-gray-300 rounded-md pr-10"
                 />
                 <button
                   type="button"
@@ -145,7 +145,7 @@ const LoginForm = () => {
               {/* Admin Login Button */}
               <button
                 type="submit"
-                className="w-full py-2 bg-blue-600 text-white rounded-md"
+                className="w-full md:py-2 py-2 text-[9px] md:text-sm bg-blue-600 text-white rounded-md"
                 disabled={loader}
               >
                 {loader ? "Admin login..." : "Admin Login"}
@@ -153,34 +153,34 @@ const LoginForm = () => {
             </form>
 
             {/* Forgot Password Link for Admin */}
-            <Link className="text-center block my-3 hover:underline" to={"/send-email"}>Forget Password</Link>
+            <Link className="text-center text-[9px] md:text-sm block my-2 md:my-3 hover:underline" to={"/send-email"}>Forget Password</Link>
           </div>
         ) : (
           // User Login Form
           <div>
-            <h2 className="text-2xl text-center mb-4">User Login</h2>
+            <h2 className="md:text-2xl text-center md:mb-4">User Login</h2>
             <form onSubmit={userLogin}>
               {/* User Email Input */}
               <div className="mb-4">
-                <label htmlFor="user-email" className="block text-sm">Email</label>
+                <label htmlFor="user-email" className="block text-[9px] md:text-sm">Email</label>
                 <input
                   type="email"
                   id="user-email"
                   name="email"
                   placeholder="Enter your email"
-                  className="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md"
+                  className="w-full md:px-4 px-2 py-1 md:py-2 mt-1 md:mt-2  border border-gray-300 rounded-md"
                 />
               </div>
 
               {/* User Password Input with Toggle Visibility */}
               <div className="mb-4 relative">
-                <label htmlFor="user-password" className="block text-sm">Password</label>
+                <label htmlFor="user-password" className="block text-[9px] md:text-sm">Password</label>
                 <input
                   type={isPasswordVisible ? "text" : "password"}
                   id="user-password"
                   name="password"
                   placeholder="Enter your password"
-                  className="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md pr-10"
+                  className="w-full md:px-4 px-2 py-1 md:py-2 mt-1 md:mt-2 border border-gray-300 rounded-md pr-10"
                 />
                 <button
                   type="button"
@@ -194,12 +194,12 @@ const LoginForm = () => {
               {/* User Login Button */}
               <button
                 type="submit"
-                className="w-full py-2 bg-blue-600 text-white rounded-md"
+                className="w-full md:py-2 py-2 text-[9px] md:text-sm bg-blue-600 text-white rounded-md"
                 disabled={loader}
               >
                 {loader ? "Login..." : "Login"}
               </button>
-              <Link className="text-center block my-3 hover:underline" to={"/send-email"}>Forget Password</Link>
+              <Link className="text-center text-[9px] md:text-sm block my-2 md:my-3 hover:underline" to={"/send-email"}>Forget Password</Link>
             </form>
           </div>
         )}

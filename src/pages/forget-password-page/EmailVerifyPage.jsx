@@ -43,12 +43,12 @@ const EmailVerifyPage = () => {
   return (
     <div>
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <form onSubmit={handleSubmit} className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold text-center text-gray-700">Email and OTP Verification</h2>
+        <form onSubmit={handleSubmit} className="w-full max-w-md p-4 md:p-8 space-y-3 md:space-y-6 bg-white rounded-lg shadow-md">
+          <h2 className="md:text-2xl font-semibold text-center text-gray-700">Email and OTP Verification</h2>
 
           {/* Email Input Field */}
           <div>
-            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-600">
+            <label htmlFor="email" className="block md:mb-2 mb-1 text-[10px] md:text-[16px] font-medium text-gray-600">
               Email Address
             </label>
             <input
@@ -56,14 +56,14 @@ const EmailVerifyPage = () => {
               id="email"
               name="email"
               placeholder="Enter your email"
-              className="w-full px-4 py-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full text-[10px] md:text-[15px] px-2 md:px-4 py-1 md:py-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
 
           {/* OTP Input Field */}
           <div>
-            <label htmlFor="otp" className="block mb-2 text-sm font-medium text-gray-600">
+            <label htmlFor="otp" className="block  md:mb-2 mb-1 text-[10px] md:text-[16px] font-medium text-gray-600">
               OTP Code
             </label>
             <input
@@ -72,7 +72,7 @@ const EmailVerifyPage = () => {
               name="otp"
               placeholder="Enter OTP"
               maxLength="6"
-              className="w-full px-4 py-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-2 text-[10px] md:text-[15px] md:px-4 py-1 md:py-2 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
@@ -80,7 +80,7 @@ const EmailVerifyPage = () => {
           {/* Verify Button with Loader */}
           <button
             type="submit"
-            className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600 flex items-center justify-center"
+            className="w-full px-2 md:px-4 text-[10px] md:text-[16px] py-1 md:py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600 flex items-center justify-center"
             disabled={loader}
           >
             {loader ? (
