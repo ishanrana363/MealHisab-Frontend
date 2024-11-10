@@ -29,4 +29,4 @@ export default {
   daisyui: {
     themes: false, // Disables DaisyUI's default themes if you want only custom themes
   },
-}
+};
